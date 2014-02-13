@@ -1,10 +1,18 @@
 body {
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #eee;
+    background-image:url(img/bg8.jpg);
+    background-size:100%;
     text-align:center;
 }
 
+.jumbotron{
+    background-color:inherit;
+}
+
+#title_main, #title_form{
+    color:#eee;
+}
 
 .form-signin {
     max-width: 330px;
@@ -16,7 +24,7 @@ body {
     margin-bottom: 10px;
 }
 .form-signin .checkbox {
-    font-weight: normal;
+    font-weight: bold;
 }
 .form-signin .form-control {
     position: relative;

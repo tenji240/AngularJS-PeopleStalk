@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
     
-    <title>Signin Template for Bootstrap</title>
+    <title>Sign In - PeopleStalk</title>
     
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,26 +23,33 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style type="text/css"></style>
+    <style type="text/css">
+        body{
+            background-image:url(img/bg8.jpg);
+        }
+    </style>
     </head>
 
     <body>
-        <div class="jumbotron">
-            <h1>Welcome to PeopleStalk.com</h1>
+        
+        <div class="container">
+            <div class="jumbotron">
+            <h1 id="title_main">Welcome to PeopleStalk.com</h1>
+        </div>
         </div>
       
         <div class="container">
         
             <form class="form-signin" role="form">
-                <h2 class="form-signin-heading">Please sign in</h2>
+                <h2 class="form-signin-heading" id="title_form">Please sign in</h2>
                 <input type="email" class="form-control" placeholder="Email address" required="" autofocus="">
                 <input type="password" class="form-control" placeholder="Password" required="">
                 
                 <label class="checkbox">
-                    <input type="checkbox" value="remember-me"> Remember me
+                    <input type="checkbox" value="remember-me"> <h4 id="title_form">Remember me</h4>
                 </label>
                 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="checkElement()">Sign in</button>
             </form>
         
         </div> <!-- /container -->

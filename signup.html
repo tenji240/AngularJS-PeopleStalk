@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
     
-    <title>Signin Template for Bootstrap</title>
+    <title>Sign Up - PeopleStalk</title>
     
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,71 +23,50 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style type="text/css"></style>
+    <style type="text/css">
+        body{
+            background-image:url(img/bg8.jpg);
+        }
+    </style>
     </head>
 
-    <body>
-        
-        <div class="jumbotron">
-            <h1>Welcome to PeopleStalk.com</h1>
+   <body>
+       
+    <div class="container">
+        <div class="jumbotron"> 
+            <h1 id="title_main">Welcome to PeopleStalk.com</h1>
         </div>
-      
-        <div class="container">
         
-        <form class="form-horizontal">
-            <fieldset>
-            
-                <!-- Form Name -->
-                <legend>Sign Up</legend>
-                
-                <!-- Text input-->
-                <div class="control-group">
-                  <label class="control-label" for="username">Username</label>
-                  <div class="controls">
-                    <input id="username" name="username" type="text" placeholder="Enter Username Here" class="input-xlarge" required="">
-                    
-                  </div>
-                </div>
-                
-                <!-- Password input-->
-                <div class="control-group">
-                  <label class="control-label" for="password">Password</label>
-                  <div class="controls">
-                    <input id="password" name="password" type="password" placeholder="Enter Password Here" class="input-xlarge" required="">
-                    
-                  </div>
-                </div>
-                
-                <!-- Password input-->
-                <div class="control-group">
-                  <label class="control-label" for="passwordConfirm">Confirm Password</label>
-                  <div class="controls">
-                    <input id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Confirm Password Here" class="input-xlarge" required="">
-                    
-                  </div>
-                </div>
-                
-                <!-- Button -->
-                <div class="control-group">
-                  <label class="control-label" for="submit">Submit</label>
-                  <div class="controls">
-                    <button id="submit" name="submit" class="btn btn-default">Let's Get Started!</button>
-                  </div>
-                </div>
-                
-            </fieldset>
-        </form>
-        
-                
-        </div> <!-- /container -->
-    
-    
+    </div>
+
+    <div class="container">
+
+      <form class="form-signin" role="form">
+        <h2 class="form-signin-heading" id="title_form">Sign Up Here</h2>
+        <input type="name" class="form-control" placeholder="Name" required="" autofocus="">
+        <input type="email" class="form-control" placeholder="Email address" required="" autofocus="">
+        <input type="password" class="form-control" placeholder="Password" required="">
+        <input type="password" class="form-control" placeholder="Confirm Password" required="">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="checkElements()">Sign Up</button>
+      </form>
+
+    </div> <!-- /container -->
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/docs.min.js"></script>      
+    <script src="js/docs.min.js"></script>   
+       
+    <script type="text/javascript">
+        function checkElements(){
+            window.alert("Woah...");
+        }
+        
+    </script>
+  
+</body>
     
-    </body>
+
 </html>
