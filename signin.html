@@ -40,16 +40,16 @@
       
         <div class="container">
         
-            <form class="form-signin" role="form">
+            <form class="form-signin" role="form" name="signInForm">
                 <h2 class="form-signin-heading" id="title_form">Please sign in</h2>
-                <input type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-                <input type="password" class="form-control" placeholder="Password" required="">
+                <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" name="email-input">
+                <input type="password" class="form-control" placeholder="Password" required="" name="password-input">
                 
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me"> <h4 id="title_form">Remember me</h4>
                 </label>
                 
-                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="checkElement()">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="checkElements()">Sign in</button>
             </form>
         
         </div> <!-- /container -->
@@ -60,7 +60,27 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/docs.min.js"></script>      
+    <script src="js/docs.min.js"></script>
+        
+    <script type="text/javascript">
+        function checkElements(){
+            
+            //values
+            var y = document.forms["signInForm"]["password-input"].value;
+    
+            console.log(y);
+                   
+            if(y == null || y == ""){
+                window.alert("Where's your password bro?");
+            }
+            
+            else{
+                window.alert("YES welcome!");    
+            }
+            
+        }
+        
+    </script>
     
     </body>
 </html>
