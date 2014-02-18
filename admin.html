@@ -11,6 +11,22 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
+        <script type="text/javascript">
+            /*  This creates a new global array object 
+                that hold 4 different People in our admin 
+                I would like to transfer this to an file 
+                later that I run at startup, so I can sign in*/ 
+            var global_array;
+            
+            function startIt(){
+                global_array = new Array(  Person("Bob Hardy", "Male", 001), 
+                                    Person("Jill Valentine", "Female", 002), 
+                                    Person("John Ive", "Male", 003),
+                                    Person("Lucy Smith", "Female", 004),
+                                    Person("admin", "Male", 000));
+            }
+        </script>
+    
 
     <style type="text/css">
           body {
@@ -23,7 +39,7 @@
     </style>
     </head>
 
-  <body>
+  <body onload="startIt()">
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -60,7 +76,7 @@
 
           <div class="starter-template">
             <h1>Bootstrap starter template</h1>
-            <p>Do Stuff Here</p>
+            <button type="button" class="btn btn-default" onclick="logList()">Console Log All Entries</button>
           </div>
 
         </div><!-- /.container -->
@@ -75,6 +91,32 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+      
+       <!--  Object Oriented Javascript - bc I'm doing some BS until this is ready
+        *   Person Class - hold information about a basic person.
+        *   Note: will move to a separate database. Will run at startup
+        -->
+      
+    <script type="text/javascript">
+       
+        function Person(full_name, gender, id){
+            this.full_name = full_name;
+            this.gender = gender;
+            this.id = id;
+        }
+    </script>
+      
+    <script type="text/javascript">
+        Person.prototype.printPerson = function(){
+            console.log(this.full_name)
+        };
+    
+        function logList(){
+            for(i = 0; i < global_array.length; i++){
+                global_array[i].printPerson;
+            }
+        }
+    </script>
   
 
 </body></html>
