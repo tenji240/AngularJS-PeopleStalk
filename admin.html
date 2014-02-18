@@ -76,7 +76,7 @@
 
           <div class="starter-template">
             <h1>Bootstrap starter template</h1>
-            <button type="button" class="btn btn-default" onclick="logList()">Console Log All Entries</button>
+            <button type="button" class="btn btn-primary btn-lg" onclick="logList()">Console Log All Entries</button>
           </div>
 
         </div><!-- /.container -->
@@ -113,7 +113,8 @@
     
         function logList(){
             for(i = 0; i < global_array.length; i++){
-                global_array[i].printPerson;
+                Person temp = global_array[i];
+                
             }
         }
     </script>
