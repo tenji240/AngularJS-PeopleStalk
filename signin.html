@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="peoplestalkus.com">
+    <meta name="author" content="yolo inc.">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    
+    <title>Sign In - PeopleStalk</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+    
+    <style type="text/css">body{background-image:url(img/bg8.jpg);}</style>
+    </head>
+
+    <body>
+        
+        <div class="container">
+            <div class="jumbotron">
+            <h1 id="title_main">Welcome to PeopleStalk.com</h1>
+        </div>
+        </div>
+      
+        <div class="container">
+        
+            <!-- That main Stuff-->
+            
+            <form class="form-signin" role="form" name="signInForm">
+                <h2 class="form-signin-heading" id="title_form">Please sign in</h2>
+                <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" name="email-input">
+                <input type="password" class="form-control" placeholder="Password" required="" name="password-input">
+                
+                <label class="checkbox">
+                    <input type="checkbox" value="remember-me"> <h4 id="title_form">Remember me</h4>
+                </label>
+                
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="checkElements()">Sign in</button>
+            </form>
+            
+            <!-- end of main -->
+        
+        </div> 
+    
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+        
+    <script type="text/javascript">
+        function checkElements(){
+            //values
+            var y = document.forms["signInForm"]["password-input"].value;
+            console.log(y);
+                   
+            if(y == null || y == ""){
+                window.alert("Where's your password bro?");
+            }else{
+                window.alert("YES Git in here!");
+            }
+        }
+    </script>
+    
+    </body>
+    
+</html>
