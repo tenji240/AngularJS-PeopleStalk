@@ -15,7 +15,7 @@
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
     
-    <style type="text/css">body{background-image:url(img/bg8.jpg);}</style>
+    <style type="text/css"></style>
     </head>
 
     <body>
@@ -32,14 +32,15 @@
             
             <form class="form-signin" role="form" name="signInForm">
                 <h2 class="form-signin-heading" id="title_form">Please sign in</h2>
-                <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" name="email-input">
-                <input type="password" class="form-control" placeholder="Password" required="" name="password-input">
+                <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" name="email/">
+                <input type="password" class="form-control" placeholder="Password" required="" name="password" />
+                
+                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Log in/" onclick="window.location.href='admin.html'">Sign in</button>
                 
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me"> <h4 id="title_form">Remember me</h4>
                 </label>
                 
-                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="checkElements()">Sign in</button>
             </form>
             
             <!-- end of main -->
@@ -53,20 +54,9 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
-        
-    <script type="text/javascript">
-        function checkElements(){
-            //values
-            var y = document.forms["signInForm"]["password-input"].value;
-            console.log(y);
-                   
-            if(y == null || y == ""){
-                window.alert("Where's your password bro?");
-            }else{
-                window.alert("YES Git in here!");
-            }
-        }
-    </script>
+    <script src="database.js"></script>
+    <!--<script src="authen.js"></script> -->
+    
     
     </body>
     
