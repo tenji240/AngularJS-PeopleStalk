@@ -48,16 +48,16 @@
         <p></p>
     </div>
       
-    <div class="container-fluid col-md-1">
+    <div class="container-fluid col-md-2">
         <div class="btn-group-vertical">
-            <button type="button" class="btn btn-lg btn-default">Names</button>
-            <button type="button" class="btn btn-lg btn-default">Emails</button>
-            <button type="button" class="btn btn-lg btn-default">Numbers</button>
-            <button type="button" class="btn btn-lg btn-default">Photos</button>
+            <button type="button" class="btn btn-lg btn-default">Add Users</button>
+            <button type="button" class="btn btn-lg btn-default">Remove Users</button>
+            <button type="button" class="btn btn-lg btn-default" onclick="loadTable();">Load Users</button>
+            
         </div>
     </div>
       
-    <div class="container-fluid col-md-offset-1">
+    <div class="container-fluid col-md-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">All Available Users</div>
                 <div class="panel-body table-responsive">
@@ -71,10 +71,7 @@
                         </thead>
                         
                         <tbody>
-                            <script src="database.js">
-                                addUser('Tenji Tembo', 'tenji@go.com', 2024102211);
-                                addUser('James Patt', 'james@ball.co', 2021114421);
-                                addUser('Jim Morty', 'jim_morty@aol.com', 2228881166);
+                            <script src="database.js" type = "text/javascript">
                                 sample();
                                 loadTable();
                             </script>
