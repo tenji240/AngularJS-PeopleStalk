@@ -3,7 +3,7 @@ body {
     padding-bottom: 40px;
     background-size:100%;
     text-align:center;
-    background-image:url(img/bg8.jpg);
+    background-color: #333;
 }
 
 .jumbotron{
