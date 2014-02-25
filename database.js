@@ -16,15 +16,15 @@ function employee(fullname, email, phone, picture) {
     this.picture = picture;
 }
 
-//returns the employee object...
-//dunno why....
-function getEmployee(fullname) {
+//boolean check!
+function getEmployee(email) {
     var i;
     for (i = 0; i < users.length; i++){
-        if(fullname == user[i].fullname){
-            return users[i];  
+        if(email == users[i].email){
+            return true;  
         }
     }
+    return false;
 }
 
 //add in a new user 
@@ -41,6 +41,8 @@ function loadTable() {
     for(i = 0; i < users.length; i++){
         
         //if(!document.getElementsByTagName) return;
+        if(users[i].fullname == 'Admin')
+            continue;
         
         tabBody = document.getElementsByTagName('tbody').item(0);
         
@@ -76,12 +78,14 @@ function loadTable() {
 var a = new employee('Tenji Tembo', 'tenji@go.com', 2024102211);
 var b = new employee('James Patt', 'james@ball.co', 2021114421);
 var c = new employee('Jim Morty', 'jim_morty@aol.com', 2228881166);
+var d = new employee('Admin', 'admin@peoplestalk.com', 1001112222);
 
 //without this, no initial users.
 function sample() {
     users.push(a);
     users.push(b);
     users.push(c);
+    users.push(d);
 }
 
 

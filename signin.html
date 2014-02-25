@@ -32,10 +32,10 @@
             
             <form class="form-signin" role="form" name="signInForm">
                 <h2 class="form-signin-heading" id="title_form">Please sign in</h2>
-                <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" name="email/">
+                <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" name="email_addr">
                 <input type="password" class="form-control" placeholder="Password" required="" name="password" />
                 
-                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Log in/" onclick="window.location.href='admin.html'">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Log in/" onclick="checkAttr();">Sign in</button>
                 
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me"> <h4 id="title_form">Remember me</h4>
@@ -55,8 +55,19 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
     <script src="database.js"></script>
-    <!--<script src="authen.js"></script> -->
-    
+    <script>sample();</script>
+    <script type="text/javascript" src="database.js">
+        function checkAttr(){
+            //have the JS check for the admin credentials
+            //sample generates the array needed.
+        }
+    </script>
+        
+        
+    <!--this uses passport. better to use this to set it up. 
+        eventually....
+        <script src="authen.js">
+        </script> -->
     
     </body>
     
