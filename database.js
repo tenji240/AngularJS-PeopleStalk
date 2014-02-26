@@ -1,45 +1,93 @@
 /*
 * This is the database JS Handler for the top level 
 * of the application. 
+* Author - Tenji Tembo
 */
 
+//Global Stuff for rendering the TABLE
 var users = [];
+var temp;
 
-function employee(fullname, email, phone, picture){
-    this.fullname=fullname;
-    this.email=email;
-    this.phone=phone;
-    this.picture=picture;
+//magical employee constructor - hopefully port to JSON Object
+function employee(fullname, email, phone, picture) {
+    this.fullname = fullname;
+    this.email = email;
+    this.phone = phone;
+    this.picture = picture;
 }
 
-function getEmployee(fullname){
-    for(i = 0; i < users.length; i++){
-        if(fullname == user[i].fullname){
-             return users[i];  
+//boolean check!
+function getEmployee(email) {
+    var i;
+    for (i = 0; i < users.length; i++){
+        if(email == users[i].email){
+            return true;  
         }
     }
+    return false;
 }
 
-function addUser(fullname, email, phone){
-    var newUser = employee(fullname,email,phone,null);
+//add in a new user 
+//untested....
+function addUser(fullname, email, phone) {
+    temp = employee(fullname ,email ,phone ,null);
     users.push(newUser);
 }
 
-function loadTable(){
-    for(i = 0; i < user.length; i++){
-        document.write('<tr>');
-        document.write('<td>' + user[i].fullname + '</td>');
-        document.write('<td>' + users[i].email + '</td>');
-        document.write('<td>' + users[i].phone + '</td>');
-        document.write('</tr>');
+//creates the intial set of users
+//pulls from the initial table of users
+//update the global object array to add and display new users....
+function loadTable() {
+    for(i = 0; i < users.length; i++){
+        
+        //if(!document.getElementsByTagName) return;
+        if(users[i].fullname == 'Admin')
+            continue;
+        
+        tabBody = document.getElementsByTagName('tbody').item(0);
+        
+        //a row elements
+        row = document.createElement('tr');
+        
+        //three column elements
+        cell_1 = document.createElement('td');
+        cell_2 = document.createElement('td');
+        cell_3 = document.createElement('td');
+            
+        //added corresponding elements
+        textNode_1 = document.createTextNode(users[i].fullname);
+        textNode_2 = document.createTextNode(users[i].email);
+        textNode_3 = document.createTextNode(users[i].phone);
+        
+        //attached the information to the cells
+        cell_1.appendChild(textNode_1);
+        cell_2.appendChild(textNode_2);
+        cell_3.appendChild(textNode_3);
+        
+        //attached the cells to the row
+        row.appendChild(cell_1);
+        row.appendChild(cell_2);
+        row.appendChild(cell_3);
+        
+        //attach the row to the body
+        tabBody.appendChild(row);
     }
 }
 
+//three global objects just to make life easier - exists in the DB
+var a = new employee('Tenji Tembo', 'tenji@go.com', 2024102211);
+var b = new employee('James Patt', 'james@ball.co', 2021114421);
+var c = new employee('Jim Morty', 'jim_morty@aol.com', 2228881166);
+var d = new employee('Admin', 'admin@peoplestalk.com', 1001112222);
 
-function sample(){
-    addUser('Tenji Tembo', 'tenji@go.com', 2024102211);
-    addUser('James Patt', 'james@ball.co', 2021114421);
-    addUser('Jim Morty', 'jim_morty@aol.com', 2228881166);
-
+//without this, no initial users.
+function sample() {
+    users.push(a);
+    users.push(b);
+    users.push(c);
+    users.push(d);
 }
+
+
+
 
