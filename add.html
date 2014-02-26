@@ -1,0 +1,29 @@
+<form class="form-add" role="form">
+	<fieldset>
+		<legend>Add A User</legend>
+			<div>
+				<label for="name">Username :</label><br>
+				<input type="name" placeholder="Name" name="username" required="" value="" maxlength="16" /><br><br>
+				
+				<label for="email">Email Address :</label><br>
+				<input type="email" placeholder="your_email@inter.net" name="email" required="" value="" maxlength="100"/><br><br>
+				
+				<label for=”password”>Password :</label><br>
+				<input type="password" placeholder="Password" name="password1" required="" value="" maxlength="16"/>
+				<input type="password" placeholder="Confirm Password" name="password2" required="" value="" maxlength="16"/><br><br>
+			
+				<label for="rank">Rank :</label><br>
+				<select name="rank">
+  				<option value ="administrator">Administrator</option>
+  				<option value ="manager">Manager</option>
+  				<option value ="employee">Employee</option>
+  				<option value ="janitor">Janitor</option>
+				</select>
+			</div>
+
+			<div>
+				<input type="submit" value="Add" />
+			</div>
+		</fieldset>
+</form>
+
