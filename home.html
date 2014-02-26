@@ -37,6 +37,7 @@
             Users are required to log in to their existing account or signup a new account
             before they are able to use the stalking program. 
         -->
+        <!-- Sign-in form -->
        <div>
            <div class="container">
                  <form class="form-signin" role="form" name="signInForm">
@@ -51,18 +52,17 @@
            </div>   
 
 
-            <!-- Signup form -->
-            <div class="container">
+            <!-- Sign-up form -->
+            <div class="container-home">
               <form class="form-signin" role="form" name="signup">
                 <input type="name" class="form-control" placeholder="Name" required="" autofocus="" id="fullname">
                 <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" id="email">
                 <input type="text" class="form-control" placeholder="Phone Number" required="" id="phone"/>
                 <input type="password" class="form-control" placeholder="Password" required="" id="password"/>
-                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="addMe()">Sign Up</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="window.location.href='admin.html'">Sign Up</button>
               </form>
+            </div>
         </div>
-
-    <!-- </div> -->
 
  <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -72,5 +72,28 @@
     <script src="js/docs.min.js"></script>
     <script src="database.js"></script>
     <!--<script src="authen.js"></script> -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>   
+    <script src="database.js"></script>
+       
+    <script>
+        function addMe(){
+            var fullname = document.getElementById(fullname).;
+            var email = document.getElementById(email);
+            var phone = document.getElementById(phone);
+            
+            addUser(fullname,email,phone);
+            
+            window.alert("You've added " + document.getElementById(fullname) + " to the database");
+            
+        }
+    </script>
+
 
 </body>
