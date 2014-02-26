@@ -1,0 +1,19 @@
+#brand-name{
+	font-size: 5.0em;
+	padding: 40px;
+}
+
+.signin-signup{
+	padding: 20px;
+	font-size: 2.0em;
+}
+
+#signin-text{
+	float: left;
+	margin-left: 200px;
+}
+
+#signup-text{
+	float: right;
+	margin-right: 200px;
+}

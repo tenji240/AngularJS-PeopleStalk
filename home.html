@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="peoplestalkus.com">
+        <meta name="author" content="yolo inc.">
+        <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+        
+        <title>PeopleStalk</title>
+        
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        
+
+        <!-- Custom styles for this template -->
+        <link href="cover.css" rel="stylesheet">
+        <link href="css/home.css" rel="stylesheet">
+        <link href="css/signin.css" rel="stylesheet"> 
+
+         <style type="text/css"></style>  
+    </head>
+
+
+<body>
+
+       <h1 id="brand-name">PeopleStalk</h1>
+
+       <div class="signin-signup">
+           <h2 class="form-signin-heading" id="title_form">  <div id="signin-text">Please Sign in</div> </h2> 
+           <h2 class="form-signin-heading" id="title_form">  <div id="signup-text">Please Sign up</div> </h2>   
+       </div>
+
+       <!-- 
+            This portion of code holds the forms for signning in and sigginign up
+            Users are required to log in to their existing account or signup a new account
+            before they are able to use the stalking program. 
+        -->
+       <div>
+           <div class="container">
+                 <form class="form-signin" role="form" name="signInForm">
+                    <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" name="email/">
+                    <input type="password" class="form-control" placeholder="Password" required="" name="password" />
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Log in/" onclick="window.location.href='admin.html'">Sign in</button>
+                    
+                    <label class="checkbox">
+                        <input type="checkbox" value="remember-me"> <h4 id="title_form">Remember me</h4>
+                    </label>
+                </form>
+           </div>   
+
+
+            <!-- Signup form -->
+            <div class="container">
+              <form class="form-signin" role="form" name="signup">
+                <input type="name" class="form-control" placeholder="Name" required="" autofocus="" id="fullname">
+                <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" id="email">
+                <input type="text" class="form-control" placeholder="Phone Number" required="" id="phone"/>
+                <input type="password" class="form-control" placeholder="Password" required="" id="password"/>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="addMe()">Sign Up</button>
+              </form>
+        </div>
+
+    <!-- </div> -->
+
+ <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+    <script src="database.js"></script>
+    <!--<script src="authen.js"></script> -->
+
+</body>
