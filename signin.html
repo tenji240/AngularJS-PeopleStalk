@@ -14,38 +14,43 @@
     
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
+    <link href="cover.css" rel="stylesheet">
     
     <style type="text/css"></style>
     </head>
 
     <body>
         
-        <div class="container">
-            <div class="jumbotron">
-            <h1 id="title_main">Welcome to PeopleStalk.com</h1>
-        </div>
-        </div>
-      
-        <div class="container">
-        
-            <!-- That main Stuff-->
-            
-            <form class="form-signin" role="form" name="signInForm">
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+
+            <div class="masthead clear">
+                <div class="inner">
+                    <h3 class="masthead-brand">PeopleStalk</h3>
+                    <ul class="nav masthead-nav">
+                        <li class="active"><a href="index.html">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="inner cover full-page">
+                <form class="form-signin" role="form" name="signInForm">
                 <h2 class="form-signin-heading" id="title_form">Please sign in</h2>
                 <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" name="email_addr">
                 <input type="password" class="form-control" placeholder="Password" required="" name="password" />
                 
-                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Log in/" onclick="checkAttr();">Sign in</button>
+                <button class="btn btn-lg btn-default" type="submit" onclick="window.location(">Sign in</button>
                 
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me"> <h4 id="title_form">Remember me</h4>
                 </label>
-                
-            </form>
-            
-            <!-- end of main -->
-        
-        </div> 
+                </form>
+            </div>
+
+        </div>
+      </div>
+    </div>
     
     
     <!-- Bootstrap core JavaScript
@@ -58,8 +63,9 @@
     <script>sample();</script>
     <script type="text/javascript" src="database.js">
         function checkAttr(){
-            //have the JS check for the admin credentials
-            //sample generates the array needed.
+            var em = document.getElementsByName('email_addr').item;
+            window.location='admin.html';
+            
         }
     </script>
         

@@ -1,12 +1,16 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+var mongojs = require('mongojs');
+var db = mongojs('C:\Users\MCTembo\Documents\GitHub\CMSC-448-Project-1\data\db');
+var collection = db.collection('names');
+
 http.createServer(function (request, response) {
     console.log('request starting...');
 	
 	var filePath = '.' + request.url;
 	if (filePath == './')
-		filePath = './index.html';
+		filePath = './admin.html';
 		
 	var extname = path.extname(filePath);
 	var contentType = 'text/html';
