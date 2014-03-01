@@ -98,3 +98,13 @@ function deleteUser(name){
        if(!err) window.alert('Deleted'); 
     });
 }
+
+//search
+function findUser(name){
+    db.collection('people').find({name:name}).toArray(function (err, result) {
+        window.alert(result[0].name);
+        window.alert(result[0].email);
+        window.alert(result[0].phone);
+        window.alert(result[0].photo);
+    });
+}
