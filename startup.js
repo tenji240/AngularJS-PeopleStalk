@@ -1,7 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-var db = var db = require('mongoskin').db('localhost:27017/people'); 
+var db = require('mongoskin').db('localhost:27017/people'); 
 var collection = db.collection('names');
 
 http.createServer(function (request, response) {
