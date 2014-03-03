@@ -1,8 +1,9 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-var db = require('mongoskin').db('localhost:27017/people'); 
-var collection = db.collection('names');
+var db = require('mongoskin').db('mongodb://localhost:27017/data/db'); 
+console.info(db);
+var collection = db.collection('people');
 
 http.createServer(function (request, response) {
     console.log('request starting...');
@@ -47,7 +48,7 @@ console.log('Server running at http://127.0.0.1:8888/');
 
 //display all elements
 function displayAll(){
-    db.collection('people').find({}, function(err, result){
+    collection.find({}, function(err, result){
         result.each(function(err, person) {
             
             window.alert(person.name);
@@ -85,8 +86,15 @@ function displayAll(){
 }
 
 //Add a User to the database
-function addUser(name, email, phone, photo){
-    db.collection('people').insert({name:name, email:email, phone:phone, photo:photo}, function (err, result) {
+function insertUser(){
+    var name = document.getElementById('name_add');
+    var email = document.getElementById('email_add');
+    var phone = document.getElementById('phone_add');
+    var url = document.getElementById('url_add');
+    
+    console.log(name);
+    
+    collection.insert({name:name, email:email, phone:phone, photo:url}, function (err, result) {
         if (err) throw err;
         if (result) window.alert('Added!');
     });
@@ -94,14 +102,14 @@ function addUser(name, email, phone, photo){
                                      
 //delete a user
 function deleteUser(name){
-    db.collections('people').remove({name:name}, function (err, result) {
+    collection.remove({name:name}, function (err, result) {
        if(!err) window.alert('Deleted'); 
     });
 }
 
 //search
 function findUser(name){
-    db.collection('people').find({name:name}).toArray(function (err, result) {
+    collection.find({name:name}).toArray(function (err, result) {
         window.alert(result[0].name);
         window.alert(result[0].email);
         window.alert(result[0].phone);
