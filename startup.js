@@ -70,6 +70,7 @@ var server = http.createServer(function (request, response) {
                    });
         request.on('end', function()
                    {
+                       console.log(msg);
                        response.write(msg);
                        response.end();
                    });

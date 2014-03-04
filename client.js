@@ -45,7 +45,7 @@ function deleteUser(name){
     });
 }
 //Load table
-function loadTable()
+function loadTable(bool)
 { 
     dataobject = {option:'show'};
      $.ajax({
@@ -57,7 +57,7 @@ function loadTable()
         contentType: 'application/json; charset=utf-8',
         success: function(result)
         {
-           showTable(result);
+           showTable(result,bool);
         },
         error: function(xmlhdrq, ajaxOptions, thrownError)
         {
@@ -66,9 +66,11 @@ function loadTable()
         }
     });
 }
-function showTable(json)
+function showTable(json, bool)
 {
    // alert(json);
+    if(bool == true)
+    {
     var stuff = JSON.parse(json);
     console.log(stuff);
     
@@ -103,6 +105,21 @@ function showTable(json)
         //attach the row to the body
         tabBody.appendChild(row);
     }
+    }
+    else{
+        var stuff = JSON.parse(json);
+        console.log(stuff.data[0]);
+        for(var data = 0; data < stuff.data.length; data++){
+           // alert(stuff.data[0]);
+            //alert(document.getElementById('search_user').value);
+            if(stuff.data[data].name == document.getElementById('search_user').value)
+            {
+                alert("TITS");
+                showUser(stuff.data[data]);
+            }
+        }
+       // showUser();
+    }
     
 }
 //search
@@ -130,16 +147,19 @@ function findUser(){
 }
 
 function showUser(user){
-    id_body = document.getElementById('user').item(0);
+    id_body = document.getElementById('user');
     image = document.createElement('img');
     name_ = document.createElement('h4');
     email_ = document.createElement('h4');
     phone_ = document.createElement('h4');
     
+    console.log(user.name);
+    console.log(user.url);
+    
     name_1 = document.createTextNode(user.name);
     email_1 = document.createTextNode(user.email);
     phone_1 = document.createTextNode(user.phone);
-    image.src = user.photo;
+    image.setAttribute('src', user.url);
     
     name_.appendChild(name_1);
     email_.appendChild(email_1);
