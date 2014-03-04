@@ -1,25 +1,37 @@
+/*
+    Node JS Server Side Javascript Handler
+    Author: Tenji Tembo
+    Class: CMSC 448/445
+    Project: 1
+    
+    This code is repsonsible for handling all POST requests
+    and AJAX calls received from the webpage, pulling the 
+    information from the database, and returing the data back.
+*/
+
+//Declarations
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-/*var db = require('mongoskin').db('mongodb://localhost:27017/people'); 
-console.info(db);
-var collection = db.collection('people');
-console.info(collection);*/
-
 var mongo = require("mongoskin");
 global.mongo = mongo;
 var db = mongo.db("mongodb://localhost:27017/data", {native_parser:true});
 db.bind('people');
 var cache = [];
+
+//Server Declaration - Server will hand all POST Requests
 var server = http.createServer(function (request, response) {
     console.log('request starting...');
 	
+    //determine path to site
 	var filePath = '.' + request.url;
 	if (filePath == './')
 		filePath = './admin.html';
 		
 	var extname = path.extname(filePath);
 	var contentType = 'text/html';
+    
+    //set up context
 	switch (extname) {
 		case '.js':
 			contentType = 'text/javascript';
@@ -28,53 +40,60 @@ var server = http.createServer(function (request, response) {
 			contentType = 'text/css';
 			break;
 	}
-	if(request.method == "POST")
-    {
+    
+    //Check AJAX Post Request
+	if(request.method == "POST") {
         var body = '';
         var msg = '';
-        request.on('data', function(data)
-                   {
-                       body+= data;
-                       json_body = JSON.parse(body);
-                       if(json_body.option == "insert")
-                       {
-                           msg = "Successfully Inserted Into Database!!!";
-                        insertDB(json_body);
-                       }
-                       else if(json_body.option == "remove")
-                       {
-                           msg = "Successfully Removed From Database!!!";
-                           removeDB(json_body);
-                       }
-                       else if (json_body.option == "search")
-                       {
-                           console.log(cache);
-                            for(var data = 0; data < cache.length; data++)
-                            {
-                               var test = cache[data];
-                                console.log(test);
-                                var s = [];
-                                if (test.name == json_body.name)
-                                {
-                                    s.push(test);
-                                    msg = "{\"data\": " + JSON.stringify(s) + "}";
-                                }
-                            }
-                           console.log("FINAL: "+ msg);
-                       }
-                       else
-                       {
-                        showDB();
-                        msg = "{\"data\": " + JSON.stringify(cache) + "}";
-                       }
-                   });
-        request.on('end', function()
-                   {
-                       console.log(msg);
-                       response.write(msg);
-                       response.end();
-                   });
+        
+        //Begin AJAX Parse
+        request.on('data', function(data) {
+
+                body+= data;
+                json_body = JSON.parse(body);
+
+                //Insert to Database
+                if(json_body.option == "insert") {
+                   msg = "Successfully Inserted Into Database";
+                    insertDB(json_body);
+                }
+
+                //Remove from Database
+                else if(json_body.option == "remove") {
+                   msg = "Successfully Removed From Database";
+                   removeDB(json_body);
+                } 
+            
+                //display element from database
+                else if (json_body.option == "search"){
+
+                    for(var data = 0; data < cache.length; data++) {
+
+                       var test = cache[data];
+                        var s = [];
+
+                        if (test.name == json_body.name){
+                            s.push(test);
+                            msg = "{\"data\": " + JSON.stringify(s) + "}";
+                        }
+                    }
+                } 
+                
+                //Parse Data from call
+                else{
+                    showDB();
+                    msg = "{\"data\": " + JSON.stringify(cache) + "}";
+                }
+            });
+        
+        //write data to sever request
+        request.on('end', function() {
+           response.write(msg);
+           response.end();
+       });
     }
+    
+    //return the server request back to client side
 	path.exists(filePath, function(exists) {
 	
 		if (exists) {
@@ -96,128 +115,57 @@ var server = http.createServer(function (request, response) {
 	});
 	
 }).listen(8888);
+
 console.log('Server running at http://127.0.0.1:8888/');
 
-function insertDB(json)
-{
+//Add JSON document to database
+function insertDB(json) {
         delete(json['option']);
         cache.push(json);
-        console.log(cache);
-        db.people.insert(json,function(err,result)
-                         {
-                            if(err) throw err;
-                            if(result) console.log("SUCCESSFULLY ADDED: " + json.name);
-                         });
+        //console.log(cache);
+    
+        db.people.insert(json,function(err,result){
+            if(err) throw err;
+            if(result) console.log("SUCCESSFULLY ADDED: " + json.name);
+        });
     console_showDB();
+    
 }
-function removeDB(json)
-{
+
+//Remove JSON document from database
+function removeDB(json){
     remove_Arr = [];
     delete(json['option']);
-    for(var data in cache)
-    {
-       if (data.name != json.name)
-       {
-           remove_Arr.push(data);
+    
+    for(var data = 0; data < cache.length; data++){
+       if (cache[data].name != json.name){
+           remove_Arr.push(cache[data]);
        }   
     }
+    
     cache = remove_Arr;
     console.log(cache);
-    db.people.remove(json, function(err,result)
-                     {
-                         if(err) throw err;
-                         if(result) console.log("SUCCESSFULLY REMOVED: " + json.name);
-                     });
-    console_showDB(); 
-}
-function console_showDB()
-{
-     db.people.find().toArray(function (err, items){
-        //console.info(items);
-    });
+    
+    db.people.remove(json, function(err,result){
+         if(err) throw err;
+         if(result) console.log("SUCCESSFULLY REMOVED: " + json.name);
+     });
 }
 
-function showDB()
-{
-    
-  return db.people.find();//{}, function (err, result){
-        /**console.log(result);
-        result.each(function (err, item) {
-            console.log("ITEM: " + item);
-            result.toArray(function (err, result){
-                    console.log(result);
-                    return result;
-                });
-        });**/
-
-//   });
-    
+//Debuggin Purposes
+function console_showDB(){
+     db.people.find().toArray(function (err, items){});
 }
-function grabData(err, result)
-{
+
+//Debugging
+function showDB() {
+  return db.people.find();
+}
+
+//Parse JSON data
+function grabData(err, result) {
     msg = "{\"data\":";
     msg += result;
     msg += "}";
 }
 
-//db.people.insert({name:"Tenji", email:"tembot@go.com", phone:"202442221", photo:"http://google.com"}, function (err, result) {
-//    if(err) throw err;
-//    if(result) console.log('Added');
-//});
-
-/**db.people.find().toArray(function (err, items){
-    console.info(items);
-});**/
-
-
-    //console.log(name);
-    //alert({name:name, email:email, phone:phone, photo:url});
-   /**8 db.people.insert({name:name, email:email, phone:phone, photo:url}, function (err, result) {
-        if (err) throw err;
-        if (result) alert('Added!');
-    });**/
-
-/*
-//display all elements
-    db.collection.find({}, function(err, result){
-        result.each(function(err, person) {
-            
-            console.log(person);
-            
-            
-            tabBody = document.getElementsByTagName('tbody').item(0);
-            
-            //a row elements
-            row = document.createElement('tr');
-            
-            //three column elements
-            cell_1 = document.createElement('td');
-            cell_2 = document.createElement('td');
-            cell_3 = document.createElement('td');
-    
-            //added corresponding elements
-            textNode_1 = document.createTextNode(person.name);
-            textNode_2 = document.createTextNode(person.email);
-            textNode_3 = document.createTextNode(person.phone);
-            
-             //attached the information to the cells
-            cell_1.appendChild(textNode_1);
-            cell_2.appendChild(textNode_2);
-            cell_3.appendChild(textNode_3);
-
-            //attached the cells to the row
-            row.appendChild(cell_1);
-            row.appendChild(cell_2);
-            row.appendChild(cell_3);
-
-            //attach the row to the body
-            tabBody.appendChild(row);
-            
-            
-        });
-    }); 
-    
-    */
-
-
-                                     
