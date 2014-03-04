@@ -7,6 +7,8 @@
     This code is repsonsible for handling all POST requests
     and AJAX calls received from the webpage, pulling the 
     information from the database, and returing the data back.
+    
+    NOTE: PLEASE SEE README.md FIRST before executing!!
 */
 
 //Declarations
@@ -23,7 +25,7 @@ var cache = [];
 var server = http.createServer(function (request, response) {
     console.log('request starting...');
 	
-    //determine path to site
+    //determine path to site    
 	var filePath = '.' + request.url;
 	if (filePath == './')
 		filePath = './admin.html';
@@ -144,7 +146,6 @@ function removeDB(json){
     }
     
     cache = remove_Arr;
-    console.log(cache);
     
     db.people.remove(json, function(err,result){
          if(err) throw err;
@@ -152,6 +153,7 @@ function removeDB(json){
      });
 }
 
+/*
 //Debuggin Purposes
 function console_showDB(){
      db.people.find().toArray(function (err, items){});
@@ -161,6 +163,8 @@ function console_showDB(){
 function showDB() {
   return db.people.find();
 }
+*/
+
 
 //Parse JSON data
 function grabData(err, result) {

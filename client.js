@@ -8,12 +8,14 @@
     POST Request to the NodeJS Server Side Caller, as
     well as receiving requests from the Server Side, 
     parsing the JSON data, and displaying the correct data.
+    
+    NOTE: PLEASE SEE README.md FIRST before executing!!
 */
 
 var clear = false;
 var update = false;
-//Add User to the Database
 
+//Add User to the Database
 function addUser() {
     var name = document.getElementById('name_add').value;
     var email = document.getElementById('email_add').value;
@@ -141,7 +143,8 @@ function showTable(json, bool) {
     }
     
 }
-//search
+
+//Search for a User
 function findUser(){
     var name = document.getElementById('search_user').value;
     dataobject = {name:name, option:"search"};
@@ -165,50 +168,50 @@ function findUser(){
     });
 }
 
-//Displays One User to the Page
+//Displays the user on the page
 function showUser(user){
-    if(!update)
-    {
-    id_body = document.getElementById('user');
-    image = document.createElement('img');
-    name_ = document.createElement('h4');
-    email_ = document.createElement('h4');
-    phone_ = document.createElement('h4');
-    
-    image.setAttribute("id", "profile_img");
-    email_.setAttribute("id", "profile_email");
-    name_.setAttribute("id", "profile_name");
-    phone_.setAttribute("id", "profile_phone");
+    if(!update) {
         
-    console.log(user.name);
-    console.log(user.url);
-    
-    name_1 = document.createTextNode(user.name);
-    email_1 = document.createTextNode(user.email);
-    phone_1 = document.createTextNode(user.phone);
-    image.setAttribute('src', user.url);
-    
-    name_.appendChild(name_1);
-    email_.appendChild(email_1);
-    phone_.appendChild(phone_1);
-    
-    id_body.appendChild(image);
-    id_body.appendChild(name_);
-    id_body.appendChild(email_);
-    id_body.appendChild(phone_);
-    update = true;
-    }
-    else{
-      // update profile
-       var img =  document.getElementById("profile_img");    
-       var name_ = document.getElementById("profile_name"); 
-       var email_ = document.getElementById("profile_email"); 
-       var phone_ =  document.getElementById("profile_phone");
-      email_.innerHTML = user.email;
-      name_.innerHTML = user.name;
-      phone_.innerHTML = user.phone;
-      img.setAttribute('src', user.url);
+        //update table
+        id_body = document.getElementById('user');
+        image = document.createElement('img');
+        name_ = document.createElement('h4');
+        email_ = document.createElement('h4');
+        phone_ = document.createElement('h4');
+
+        image.setAttribute("id", "profile_img");
+        email_.setAttribute("id", "profile_email");
+        name_.setAttribute("id", "profile_name");
+        phone_.setAttribute("id", "profile_phone");
+
+        console.log(user.name);
+        console.log(user.url);
+
+        name_1 = document.createTextNode(user.name);
+        email_1 = document.createTextNode(user.email);
+        phone_1 = document.createTextNode(user.phone);
+        image.setAttribute('src', user.url);
+
+        name_.appendChild(name_1);
+        email_.appendChild(email_1);
+        phone_.appendChild(phone_1);
+
+        id_body.appendChild(image);
+        id_body.appendChild(name_);
+        id_body.appendChild(email_);
+        id_body.appendChild(phone_);
+        update = true;
         
-      
+    } else {
+        
+        // update profile
+        var img =  document.getElementById("profile_img");    
+        var name_ = document.getElementById("profile_name"); 
+        var email_ = document.getElementById("profile_email"); 
+        var phone_ =  document.getElementById("profile_phone");
+        email_.innerHTML = user.email;
+        name_.innerHTML = user.name;
+        phone_.innerHTML = user.phone;
+        img.setAttribute('src', user.url);
     }
 }
