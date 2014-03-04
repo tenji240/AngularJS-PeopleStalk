@@ -1,11 +1,18 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-var db = require('mongoskin').db('mongodb://localhost:27017/data/db'); 
+/*var db = require('mongoskin').db('mongodb://localhost:27017/people'); 
 console.info(db);
 var collection = db.collection('people');
+console.info(collection);*/
 
-http.createServer(function (request, response) {
+var mongo = require("mongoskin");
+global.mongo = mongo;
+var db = mongo.db("mongodb://localhost:27017/data", {native_parser:true});
+db.bind('people');
+
+
+var server = http.createServer(function (request, response) {
     console.log('request starting...');
 	
 	var filePath = '.' + request.url;
@@ -22,7 +29,35 @@ http.createServer(function (request, response) {
 			contentType = 'text/css';
 			break;
 	}
-	
+	if(request.method == "POST")
+    {
+        var body = '';
+        var msg = '';
+        request.on('data', function(data)
+                   {
+                       body+= data;
+                       json_body = JSON.parse(body);
+                       if(json_body.option == "insert")
+                       {
+                           msg = "Successfully Inserted Into Database!!!";
+                        insertDB(json_body);
+                       }
+                       else if(json_body.option == "remove")
+                       {
+                           msg = "Successfully Removed From Database!!!";
+                           removeDB(json_body);
+                       }
+                       else
+                       {
+                          msg = showDB();
+                       }
+                   });
+        request.on('end', function()
+                   {
+                       response.write(msg);
+                       response.end();
+                   });
+    }
 	path.exists(filePath, function(exists) {
 	
 		if (exists) {
@@ -46,12 +81,70 @@ http.createServer(function (request, response) {
 }).listen(8888);
 console.log('Server running at http://127.0.0.1:8888/');
 
+function insertDB(json)
+{
+        delete(json['option']);
+        db.people.insert(json,function(err,result)
+                         {
+                            if(err) throw err;
+                            if(result) console.log("SUCCESSFULLY ADDED: " + json.name);
+                         });
+    console_showDB();
+}
+function removeDB(json)
+{
+    delete(json['option']);
+    db.people.remove(json, function(err,result)
+                     {
+                         if(err) throw err;
+                         if(result) console.log("SUCCESSFULLY REMOVED: " + json.name);
+                     });
+    console_showDB(); 
+}
+function console_showDB()
+{
+     db.people.find().toArray(function (err, items){
+    console.info(items);
+    });
+}
+
+function showDB()
+{
+    json_data = "{\"data\": ";
+    var data = db.people.find().toArray(function (err, items)
+                                        {
+                                            return items;
+                                        });
+    console.log(data);
+    json_data= json_data + data + "}";
+    console.log(json_data);
+    return json_data;
+}
+
+//db.people.insert({name:"Tenji", email:"tembot@go.com", phone:"202442221", photo:"http://google.com"}, function (err, result) {
+//    if(err) throw err;
+//    if(result) console.log('Added');
+//});
+
+/**db.people.find().toArray(function (err, items){
+    console.info(items);
+});**/
+
+
+    //console.log(name);
+    //alert({name:name, email:email, phone:phone, photo:url});
+   /**8 db.people.insert({name:name, email:email, phone:phone, photo:url}, function (err, result) {
+        if (err) throw err;
+        if (result) alert('Added!');
+    });**/
+
+/*
 //display all elements
-function displayAll(){
-    collection.find({}, function(err, result){
+    db.collection.find({}, function(err, result){
         result.each(function(err, person) {
             
-            window.alert(person.name);
+            console.log(person);
+            
             
             tabBody = document.getElementsByTagName('tbody').item(0);
             
@@ -81,38 +174,11 @@ function displayAll(){
             //attach the row to the body
             tabBody.appendChild(row);
             
+            
         });
     }); 
-}
+    
+    */
 
-//Add a User to the database
-function insertUser(){
-    var name = document.getElementById('name_add');
-    var email = document.getElementById('email_add');
-    var phone = document.getElementById('phone_add');
-    var url = document.getElementById('url_add');
-    
-    console.log(name);
-    
-    collection.insert({name:name, email:email, phone:phone, photo:url}, function (err, result) {
-        if (err) throw err;
-        if (result) window.alert('Added!');
-    });
-}
+
                                      
-//delete a user
-function deleteUser(name){
-    collection.remove({name:name}, function (err, result) {
-       if(!err) window.alert('Deleted'); 
-    });
-}
-
-//search
-function findUser(name){
-    collection.find({name:name}).toArray(function (err, result) {
-        window.alert(result[0].name);
-        window.alert(result[0].email);
-        window.alert(result[0].phone);
-        window.alert(result[0].photo);
-    });
-}
