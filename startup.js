@@ -10,8 +10,7 @@ var mongo = require("mongoskin");
 global.mongo = mongo;
 var db = mongo.db("mongodb://localhost:27017/data", {native_parser:true});
 db.bind('people');
-
-
+var cache = [];
 var server = http.createServer(function (request, response) {
     console.log('request starting...');
 	
@@ -47,9 +46,26 @@ var server = http.createServer(function (request, response) {
                            msg = "Successfully Removed From Database!!!";
                            removeDB(json_body);
                        }
+                       else if (json_body.option == "search")
+                       {
+                           console.log(cache);
+                            for(var data = 0; data < cache.length; data++)
+                            {
+                               var test = cache[data];
+                                console.log(test);
+                                var s = [];
+                                if (test.name == json_body.name)
+                                {
+                                    s.push(test);
+                                    msg = "{\"data\": " + JSON.stringify(s) + "}";
+                                }
+                            }
+                           console.log("FINAL: "+ msg);
+                       }
                        else
                        {
-                          msg = showDB();
+                        showDB();
+                        msg = "{\"data\": " + JSON.stringify(cache) + "}";
                        }
                    });
         request.on('end', function()
@@ -84,6 +100,8 @@ console.log('Server running at http://127.0.0.1:8888/');
 function insertDB(json)
 {
         delete(json['option']);
+        cache.push(json);
+        console.log(cache);
         db.people.insert(json,function(err,result)
                          {
                             if(err) throw err;
@@ -93,7 +111,17 @@ function insertDB(json)
 }
 function removeDB(json)
 {
+    remove_Arr = [];
     delete(json['option']);
+    for(var data in cache)
+    {
+       if (data.name != json.name)
+       {
+           remove_Arr.push(data);
+       }   
+    }
+    cache = remove_Arr;
+    console.log(cache);
     db.people.remove(json, function(err,result)
                      {
                          if(err) throw err;
@@ -104,21 +132,31 @@ function removeDB(json)
 function console_showDB()
 {
      db.people.find().toArray(function (err, items){
-    console.info(items);
+        //console.info(items);
     });
 }
 
 function showDB()
 {
-    json_data = "{\"data\": ";
-    var data = db.people.find().toArray(function (err, items)
-                                        {
-                                            return items;
-                                        });
-    console.log(data);
-    json_data= json_data + data + "}";
-    console.log(json_data);
-    return json_data;
+    
+  return db.people.find();//{}, function (err, result){
+        /**console.log(result);
+        result.each(function (err, item) {
+            console.log("ITEM: " + item);
+            result.toArray(function (err, result){
+                    console.log(result);
+                    return result;
+                });
+        });**/
+
+//   });
+    
+}
+function grabData(err, result)
+{
+    msg = "{\"data\":";
+    msg += result;
+    msg += "}";
 }
 
 //db.people.insert({name:"Tenji", email:"tembot@go.com", phone:"202442221", photo:"http://google.com"}, function (err, result) {

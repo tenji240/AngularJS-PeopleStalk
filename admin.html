@@ -32,11 +32,11 @@
                 </button>
                 <a class="navbar-brand" href="admin.html">People Stalk</a>
                 
-                <form class="navbar-form navbar-right" role="search">
+                <form class="navbar-form navbar-right">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Search" id="search_user">
                     </div>
-                    <button type="submit_search" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default" onclick="findUser()">Show User</button>
                 </form>
             </div>
           </div>
@@ -56,14 +56,8 @@
             
             <div class="col-md-3" style="float:left">
                 <div class="container col-md-12">
-                    <div class="jumbotron">
-                        <img alt="" src="http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-stalk-people-4.png">
-                        <h4 class="attributes">Name: </h4>
-                            <p id="name"></p>
-                        <h4 class="attributes">Phone: </h4>
-                            <p id="phone"></p>
-                        <h4 class="attributes">Email: </h4>
-                            <p id="email"></p>
+                    <div class="jumbotron" id="user">
+                        
                     </div>
                 </div>
             </div>
@@ -103,6 +97,7 @@
                     
                     <button id="submit_user" type="submit" class="btn btn-primary" onclick="addUser()">Submit</button>
                     <button id="delete_user" type="submit" class="btn btn-warning" onclick="deleteUser()">Delete</button>
+                   <!-- <button id="find_user" type="submit" class="btn btn-warning" onclick="findUser()">Delete</button> -->
                 </div>
             </div>
 
