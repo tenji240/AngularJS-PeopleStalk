@@ -153,7 +153,7 @@ function removeDB(json){
      });
 }
 
-/*
+
 //Debuggin Purposes
 function console_showDB(){
      db.people.find().toArray(function (err, items){});
@@ -163,7 +163,7 @@ function console_showDB(){
 function showDB() {
   return db.people.find();
 }
-*/
+
 
 
 //Parse JSON data
