@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="jumbotron col-md-12">
+
+        <div class="container col-md-12">
+          <div class="container" style="float:left">
+              <h2>{{ message }}</h2>
+          </div>
+          
+          <div class="container" style="float:right">
+            <button id="submit_user" type="submit" class="btn btn-primary" onclick="addUser()">Submit</button>
+            <button id="delete_user" type="submit" class="btn btn-warning" onclick="deleteUser()">Delete</button>
+            <button type="submit" class="btn btn-default" onclick="loadTable(false)">Show User</button>
+          </div>
+        </div>
+        
+        
+        <div class="container col-md-12">
+          <form role="form" class="form-inline">
+              <div class="form-group">
+                  <input type="text" class="form-control" id="name_add" placeholder="Enter Name Here">
+              </div>
+              
+              <div class="form-group">
+                  <input type="email" class="form-control" id="email_add" placeholder="Enter Email">
+              </div>
+          
+              <div class="form-group">
+                  <input type="text" class="form-control" id="phone_add" placeholder="Enter Phone Number">
+              </div>
+              
+              <div class="form-group">
+                  <input type="url" class="form-control" id="url_add" placeholder="Insert Photo URL">
+              </div>
+          </form>
+        </div>
+        
+    </div>
+</div>
