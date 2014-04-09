@@ -28,7 +28,7 @@ var server = http.createServer(function (request, response) {
     //determine path to site    
 	var filePath = '.' + request.url;
 	if (filePath == './')
-		filePath = './admin.html';
+		filePath = './index.html';
 		
 	var extname = path.extname(filePath);
 	var contentType = 'text/html';
