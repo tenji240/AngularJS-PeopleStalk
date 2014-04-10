@@ -32,7 +32,7 @@ peopleApp.config(function($routeProvider) {
         });
 });
 
-peopleApp.controller('manageController',[ function ($scope){
+peopleApp.controller('manageController',[ '$scope' , function ($scope){
 
     //Add User Function defined in manageController
     $scope.addUser = function(){
