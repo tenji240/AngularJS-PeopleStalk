@@ -29,10 +29,15 @@ peopleApp.config(function($routeProvider) {
         .when('/profile', {
           templateUrl : 'pages/profile.html',
           controller  : 'profileController'
+        })
+
+        .when('/password', {
+            templateUrl : 'pages/change_password.html',
+            controller : 'passwordController'
         });
 });
 
-peopleApp.controller('manageController',[ '$scope' , function ($scope){
+peopleApp.controller('manageController',[ function ($scope){
 
     //Add User Function defined in manageController
     $scope.addUser = function(){
@@ -216,6 +221,36 @@ peopleApp.controller('friendsController', [ function ( $scope ) {
     
 }]);
 
+peopleApp.controller('passwordController', [ function ( $scope) {
+    $scope.changePassword = function(){
+        var password = document.getElementById('password_change1').value;
+        var confirm_password = document.getElementById('password_change2').value;
+
+        if (password != confirm_password) {
+            alert("passwords don't match");
+        }
+        else {
+            alert("passwords match. not bad");
+        }
+
+/*        dataobject = {name:name, email:email, phone:phone, url:url, option:"insert"};
+
+        //POST REQUEST - Server Side JS
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8888/",
+            data: JSON.stringify(dataobject),
+            datatype: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function(result) { alert(result); },
+            error: function(xmlhdrq, ajaxOptions, thrownError) {
+                alert(xmlhdrq.status);
+                alert(thrownError);
+            }
+        }); */
+    }
+}]);
+
 //Vanilla Screens
 // create the controller and inject Angular's $scope
 peopleApp.controller('mainController', function($scope) {
@@ -235,4 +270,8 @@ peopleApp.controller('friendsController', function($scope) {
 
 peopleApp.controller('profileController', function($scope){
   $scope.message = 'Welcome to Profiles!';
+});
+
+peopleApp.controller('passwordController', function($scope){
+    $scope.message = 'Change password here.';
 });
