@@ -3,47 +3,50 @@
 <!-- define angular app -->
 <html ng-app="peopleApp">
 
-<head>
-  <!-- SCROLLS -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+    <head>
+      <!-- SCROLLS -->
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 
-  <!-- SPELLS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
-  <script src="script.js"></script>
-</head>
+      <!-- SPELLS -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+      <script src="script.js"></script>
+      <script src="client.js"></script>
+    </head>
 
-<!-- define angular controller -->
-<body ng-controller="mainController">
+    <!-- define angular controller -->
+    <body ng-controller="mainController">
 
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">PeopeStalk</a>
-      </div>
+          <nav class="navbar navbar-default">
+            <div class="container">
+                
+              <div class="navbar-header">
+                <a class="navbar-brand" href="/">PeopeStalk</a>
+              </div>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="#manage"><i class="fa fa-search"></i> Mange</a></li>
-        <li><a href="#friends"><i class="fa fa-group"></i> Friends</a></li>
-        <li><a href="#profile"><i class="fa fa-home"></i> Profile</a></li>
-      </ul>
-    </div>
-  </nav>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#manage"><i class="fa fa-search"></i> Mange</a></li>
+                <li><a href="#friends"><i class="fa fa-group"></i> Friends</a></li>
+                <li><a href="#profile"><i class="fa fa-home"></i> Profile</a></li>
+              </ul>
+                
+            </div>
+          </nav>
 
-  <div id="main">
-  
-    <!-- angular templating -->
-		<!-- this is where content will be injected -->
-    <div ng-view></div>
-    
-  </div>
-  
-  <footer class="text-center">
-    <p>Copyright <a href="index.html">People Stalk.com</a></p>
-  </footer>
-  
-</body>
+          <div id="main">
+
+            <!-- angular templating -->
+                <!-- this is where content will be injected -->
+            <div ng-view></div>
+
+          </div>
+
+          <footer class="text-center">
+            <p>Copyright <a href="index.html">People Stalk.com</a></p>
+          </footer>
+
+    </body>
 
 </html>

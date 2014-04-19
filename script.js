@@ -35,11 +35,15 @@ peopleApp.config(function($routeProvider) {
 peopleApp.controller('manageController',[ '$scope' , function ($scope){
 
     //Add User Function defined in manageController
-    $scope.addUser = function(){
+    $scope.addUser = function(user){
         var name = document.getElementById('name_add').value;
         var email = document.getElementById('email_add').value;
         var phone = document.getElementById('phone_add').value;
         var url = document.getElementById('url_add').value;
+        
+        
+        window.alert(name);
+        
         dataobject = {name:name, email:email, phone:phone, url:url, option:"insert"};
 
         //POST REQUEST - Server Side JS
@@ -85,7 +89,11 @@ peopleApp.controller('profileController', [ function ( $scope) {
 
 
 peopleApp.controller('friendsController', [ function ( $scope ) {
+    
     $scope.loadTable = function( bool, clear) {
+        
+        window.alert(bool);
+        
         //POST REQUEST - Server Side JS
         dataobject = {option:'show'};
         $.ajax({
@@ -223,10 +231,44 @@ peopleApp.controller('mainController', function($scope) {
     $scope.message = 'Welcome to PeopleStalk.com!';
 });
 
-// create the controller and inject Angular's $scope
+//create the controller and inject Angular's $scope
 peopleApp.controller('manageController', function($scope) {
     // create a message to display in our view
     $scope.message = 'Add or Delete Users Here';
+    
+    $scope.master = {};
+    
+    $scope.addUser = function(user){
+        $scope.master = angular.copy(user);
+        dataobject = {name:user.name, email:user.email, phone:user.phone, url:user.url, option:"insert"};
+        window.alert(user.email);
+
+        //POST REQUEST - Server Side JS
+        /*$.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8888/",
+            data: JSON.stringify(dataobject),
+            datatype: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function(result) { alert(result); },
+            error: function(xmlhdrq, ajaxOptions, thrownError) {
+                alert(xmlhdrq.status);
+                alert(thrownError);
+            }
+        });*/
+        
+        $http({
+            url:"http://127.0.0.1:8888/#/manage",
+            method:"POST",
+            data: JSON.stringify(dataobject)
+        }).success(function(result) {
+            window.alert(result);
+        }).error(function(xmlhdrq, ajaxOptions, thrownError) {
+            window.alert(xmlhdrq.status);
+        });
+    };
+    
+    
 });
 
 peopleApp.controller('friendsController', function($scope) {
