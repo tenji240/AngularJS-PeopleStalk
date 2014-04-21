@@ -63,6 +63,13 @@ peopleApp.controller('manageController', function($scope) {
         });
     }
     
+    $scope.removeUser = function(){
+        for(var data = 0; data < array.length; data++){
+            if(array[data].name == $scope.user.name)
+                array.splice(data,1);
+        }
+    }
+    
     $scope.master = array;
     
 });

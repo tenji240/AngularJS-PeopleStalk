@@ -33,11 +33,18 @@
                 </div>
             </form>
         </div>
+        
+        <br />
 
-        <div class="col-md-6 text-center">
-            <p>Name: {{user.name}}</p>
-            <p>Email: {{user.email}}</p>
-            <p>Phone: {{user.phone}}</p>
+        <div class="col-md-10 col-md-offset-1">
+            <div style="float:left" class="text-left">
+                <p>Name: {{user.name}}</p>
+                <p>Email: {{user.email}}</p>
+                <p>Phone: {{user.phone}}</p>
+            </div>
+            <div style="float:right">
+                <img src={{user.url}} height="300" width="275"/>
+            </div>
         </div>
 
     </div>
