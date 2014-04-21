@@ -1,5 +1,24 @@
-<div class="container" ng-controller="manageController">
-    <div class="jumbotron col-md-12">
+<div ng-controller="manageController">
+    
+    <nav class="navbar navbar-default">
+        <div class="container">
+
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">PeopleStalk</a>
+          </div>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#manage"><i class="fa fa-search"></i> Mange</a></li>
+            <li><a href="#friends"><i class="fa fa-group"></i> Friends</a></li>
+            <li><a href="#profile"><i class="fa fa-home"></i> Profile</a></li>
+          </ul>
+
+        </div>  
+    </nav>
+    
+    
+    <div class="jumbotron col-md-12" id="main">
 
         <div class="container col-md-12">
           <div class="container text-center">
@@ -25,15 +44,20 @@
               <div class="form-group">
                   <input type="url" class="form-control" id="url_add" placeholder="Insert Photo URL" ng-model="user.url">
               </div>
+              
+              <div class="form-group">
+                  <input type="text" class="form-control" id="password_add" placeholder="Enter Password" ng-model="user.password">
+              </div>
           </form>
         </div>
         
         <div class="container col-md-12 text-center">
-            <button id="submit_user" class="btn btn-primary" ng-click="addUser(user)">Submit</button>
+            <button id="submit_user" class="btn btn-primary" ng-click="addUser()">Submit</button>
             <button id="delete_user" class="btn btn-warning" ng-click="deleteUser()">Delete</button>
             <button class="btn btn-default" ng-click="loadTable(false)">Show User</button>
         </div>
         
+        <!-- Just for Debugging
         <div class="container col-md-12 text-center">
             <h3>From the Form:</h3>
             <p>{{user}}</p>
@@ -41,6 +65,7 @@
             <h3>From Master: </h3>
             <p>{{master}}</p>
         </div>
+        -->
         
     </div>
 </div>

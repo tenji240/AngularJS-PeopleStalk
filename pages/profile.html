@@ -1,23 +1,44 @@
-<div class="containter col-md-12 text-center">
-    <div class="jumbotron col-md-12" style="margin-left:auto; margin-right:auto">
-    
-    <h2>{{ message }}</h2>
+<nav class="navbar navbar-default">
+    <div class="container">
 
-    <hr />
-    
-      <div class="col-md-12">
-        <form role="form" class="form-inline text-center">
-            <div class="form-group">
-                <input type="text" class="form-control" id="search_user" placeholder="Enter Name Here">
-            </div>
-            
-            <div class="form-group">
-                <button id="get_user" type="submit" class="btn btn-primary" onclick="showUser()">Submit</button>
-            </div>
-        </form>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">PeopleStalk</a>
       </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#manage"><i class="fa fa-search"></i> Mange</a></li>
+        <li><a href="#friends"><i class="fa fa-group"></i> Friends</a></li>
+        <li><a href="#profile"><i class="fa fa-home"></i> Profile</a></li>
+      </ul>
+
+    </div>  
+</nav>
+
+<div class="containter col-md-12 text-center">
+    <div class="container jumbotron col-md-12" style="margin-left:auto; margin-right:auto">
     
-      <div class="col-md-6" style="float:right" id="user"></div>
+        <h2>{{ message }}</h2>
+
+        <hr />
+
+        <div class="col-md-12">
+            <form role="form" class="form-inline text-center">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="search_user" placeholder="Enter Name Here" ng-model="inputText">
+                </div>
+
+                <div class="form-group">
+                    <button id="get_user" type="submit" class="btn btn-primary" ng-click="showUser()">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-6 text-center">
+            <p>Name: {{user.name}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>Phone: {{user.phone}}</p>
+        </div>
 
     </div>
 </div>
