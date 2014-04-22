@@ -2,10 +2,10 @@
 var clear = false;
 var update = false;
 var array = [
-        {id:0, name:'Alpha', email:'alpha@gmail.com', phone:'111-222-3333', url:'http://tinyurl.com/k9oey4q', password:'paper56'},
-        {id:1, name:'Beta', email:'beta@gmail.com', phone:'111-222-3345', url:'http://tinyurl.com/jvwsjcl', password:'bell541'},
-        {id:2, name:'Charlie', email:'charlie@gmail.com', phone:'111-223-4456', url:'http://tinyurl.com/layxu5v', password:'calling131'},
-        {id:3, name:'Delta', email:'delta@gmail.com', phone:'111-445-2213', url:'http://tinyurl.com/kfmjv2l', password:'wankel123'}
+        {id : 0, name : 'Alpha', email : 'alpha@gmail.com', phone : '111-222-3333', url : 'http://tinyurl.com/k9oey4q', password : 'paper56'},
+        {id : 1, name : 'Beta', email : 'beta@gmail.com', phone : '111-222-3345', url : 'http://tinyurl.com/jvwsjcl', password : 'bell541'},
+        {id : 2, name : 'Charlie', email : 'charlie@gmail.com', phone : '111-223-4456', url : 'http://tinyurl.com/layxu5v', password : 'calling131'},
+        {id : 3, name : 'Delta', email : 'delta@gmail.com', phone : '111-445-2213', url : 'http://tinyurl.com/kfmjv2l', password : 'wankel123'}
     ];
 
 var peopleApp = angular.module('peopleApp', ['ngRoute']);
@@ -15,7 +15,7 @@ peopleApp.config(function($routeProvider) {
     $routeProvider
 
         // route for the home page
-        .when('/', {
+        .when('/home', {
             templateUrl : 'pages/home.html',
             controller  : 'mainController'
         })
@@ -33,41 +33,139 @@ peopleApp.config(function($routeProvider) {
         })
 
         .when('/profile', {
-          templateUrl : 'pages/profile.html',
-          controller  : 'profileController'
+            templateUrl   : 'pages/profile.html',
+            controller    : 'profileController'
+        })
+    
+        .when('/login', {
+            templateUrl : 'pages/login.html',
+            controller  : 'loginController'
+        })
+    
+        .when('/signup', {
+            templateUrl : 'pages/signup.html',
+            controller  : 'signupController'
+        })
+        
+        .when('/', {
+            templateUrl : 'pages/welcome.html',
+            controller  : 'welcomeController' 
         });
 });
 
 //Vanilla Screens
 // create the controller and inject Angular's $scope
 
-peopleApp.controller('mainController', function($scope) {
+peopleApp.controller('mainController', function ($scope) {
     // create a message to display in our view
     $scope.message = 'Welcome to PeopleStalk.com!';
 
 });
 
+peopleApp.controller('welcomeController', function ($scope) {
+    $scope.message = 'Welcome to PeopleStalk.com! Click to get Started'
+});
+
+peopleApp.controller('loginController', [ '$scope', '$location', function ($scope, $location) {
+    $scope.master = array;
+    
+    $scope.login = function(){
+        
+        var found = false;
+        
+        for(var data = 0; data < array.length; data++){
+            if(array[data].email == $scope.user.email && array[data].password == $scope.user.password){
+                window.alert('Welome - Click to Redirect'); 
+                found = true;
+                break;
+            }
+            else
+                window.alert('Invalid Email and/or Password');
+        }
+        
+        if(found){
+            window.location('/#home');
+        }
+    }
+}]);
+
+peopleApp.controller('signupController', function ($scope) {
+    $scope.master = array;
+    
+    $scope.signUp = function(){
+        var found = false;
+        
+        for(var data = 0; data < array.length; data++){
+            if(array[data].name == $scope.user.name){
+                found = true;
+                break;
+            }
+        }
+        
+        if(!found){
+            array.push({
+                id : array.length,
+                name : $scope.user.name,
+                email : $scope.user.email,
+                phone : $scope.user.phone,
+                password : $scope.user.password
+            });
+        
+            window.alert('Welcome' + $scope.user.name +  ' to PeopleStalk.');
+            window.location('#home');
+        }
+    }
+});
+
 //create the controller and inject Angular's $scope
-peopleApp.controller('manageController', function($scope) {
+peopleApp.controller('manageController', function ($scope) {
     // create a message to display in our view
     $scope.message = 'Add or Delete Users Here';
     
     $scope.addUser = function(){
         array.push({
-            id:array.length,
-            name:$scope.user.name,
-            email:$scope.user.email,
-            phone:$scope.user.phone,
-            url:$scope.user.url,
-            password:$scope.user.password
+            id : array.length,
+            name : $scope.user.name,
+            email : $scope.user.email,
+            phone : $scope.user.phone,
+            url : $scope.user.url,
+            password : $scope.user.password
         });
+        
+        window.alert('Successfully Added ' + $scope.user.name +  ' to PeopleStalk.');
     }
     
     $scope.removeUser = function(){
+        
+        var found = false;
+        
         for(var data = 0; data < array.length; data++){
-            if(array[data].name == $scope.user.name)
+            if(array[data].name == $scope.user.name){
                 array.splice(data,1);
+                found = true;
+            }
         }
+        
+        if(!found)
+            window.alert('Can\'t Find ' + $scope.user.name +  ' in PeopleStalk.');
+    }
+    
+    $scope.updateUser = function(){
+        
+        var found = false;
+        
+        for(var data = 0; data < array.length; data++){
+            if(array[data].name == $scope.user.name){
+                array[data].email = $scope.user.email;
+                array[data].phone = $scope.user.phone;
+                array[data].url = $scope.user.url;
+                array[data].password = $scope.user.password;
+                found = true;
+            }
+        }
+        
+        if(!found)
+            window.alert('Can\'t Find ' + $scope.user.name +  ' in PeopleStalk.');
     }
     
     $scope.master = array;
@@ -86,10 +184,18 @@ peopleApp.controller('profileController', function($scope){
     $scope.master = array;
     
     $scope.showUser = function(){
+        
+        var found = false;
+        
         for(var data = 0; data < array.length; data++){
-            if(array[data].name == $scope.inputText)
+            if(array[data].name == $scope.inputText){
                 $scope.user = array[data];
+                found = true;
+            }
         }
+        
+        if(!found)
+            window.alert('Can\'t Find ' + $scope.user.name +  ' in PeopleStalk.');;
     }
     
 });

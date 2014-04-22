@@ -4,11 +4,11 @@
         <div class="container">
 
           <div class="navbar-header">
-            <a class="navbar-brand" href="/">PeopleStalk</a>
+            <a class="navbar-brand" href="#home">PeopleStalk</a>
           </div>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#manage"><i class="fa fa-search"></i> Mange</a></li>
             <li><a href="#friends"><i class="fa fa-group"></i> Friends</a></li>
             <li><a href="#profile"><i class="fa fa-home"></i> Profile</a></li>
@@ -54,6 +54,7 @@
         <div class="container col-md-12 text-center">
             <button id="submit_user" class="btn btn-primary" ng-click="addUser()">Submit</button>
             <button id="delete_user" class="btn btn-warning" ng-click="removeUser()">Delete</button>
+            <button id="update_user" class="btn btn-default" ng-click="updateUser()">Update</button>
         </div>
         
         <!-- Just for Debugging 
@@ -68,3 +69,7 @@
         
     </div>
 </div>
+
+<footer class="text-center">
+    <p>Copyright <a href="index.html">People Stalk.com</a></p>
+</footer>
