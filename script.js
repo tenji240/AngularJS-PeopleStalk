@@ -63,7 +63,7 @@ peopleApp.controller('mainController', function ($scope) {
 });
 
 peopleApp.controller('welcomeController', function ($scope) {
-    $scope.message = 'Welcome to PeopleStalk.com! Click to get Started'
+    $scope.message = 'Welcome to PeopleStalk.com!'
 });
 
 peopleApp.controller('loginController', [ '$scope', '$location', function ($scope, $location) {
@@ -111,7 +111,7 @@ peopleApp.controller('signupController', function ($scope) {
                 password : $scope.user.password
             });
         
-            window.alert('Welcome' + $scope.user.name +  ' to PeopleStalk.');
+            window.alert('Welcome, ' + $scope.user.name +  ' to PeopleStalk.');
             window.location('#home');
         }
     }
