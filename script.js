@@ -118,7 +118,8 @@ peopleApp.controller('signupController', function ($scope) {
 });
 
 //create the controller and inject Angular's $scope
-peopleApp.controller('manageController', function ($scope, $http) {
+peopleApp.controller('manageController', function ($scope, $window) {
+    
     // create a message to display in our view
     $scope.message = 'Add or Delete Users Here';
     
@@ -129,34 +130,34 @@ peopleApp.controller('manageController', function ($scope, $http) {
             email : $scope.user.email,
             phone : $scope.user.phone,
             url : $scope.user.url,
-            password : $scope.user.password
+            password : $scope.user.password,
+            option: "insert"
         };
 
         array.push(dataObject);
-        window.alert('Successfully Added ' + $scope.user.name +  ' to PeopleStalk.');
+        $window.alert('Successfully Added ' + $scope.user.name +  ' to PeopleStalk.');
         addUser_PostR(dataObject);
     }
     
     
     $scope.removeUser = function(){
-        
         var found = false;
-        
         for(var data = 0; data < array.length; data++){
             if(array[data].name == $scope.user.name){
                 array.splice(data,1);
                 found = true;
+                break;
             }
         }
-        
         if(!found)
-            window.alert('Can\'t Find ' + $scope.user.name +  ' in PeopleStalk.');
+            $window.alert('Can\'t Find ' + $scope.user.name +  ' in PeopleStalk.');
+        else{
+            dataObject = {name:$scope.user.name, option:"remove"};
+        }
     }
     
     $scope.updateUser = function(){
-        
         var found = false;
-        
         for(var data = 0; data < array.length; data++){
             if(array[data].name == $scope.user.name){
                 array[data].email = $scope.user.email;
@@ -164,12 +165,11 @@ peopleApp.controller('manageController', function ($scope, $http) {
                 array[data].url = $scope.user.url;
                 array[data].password = $scope.user.password;
                 found = true;
+                break;
             }
         }
-        
         if(!found)
-            window.alert('Can\'t Find ' + $scope.user.name +  ' in PeopleStalk.');
-        
+            $window.alert('Can\'t Find ' + $scope.user.name +  ' in PeopleStalk.');
     }
     
     $scope.master = array;
@@ -180,15 +180,31 @@ peopleApp.controller('manageController', function ($scope, $http) {
 //Hopefully it works....
 function addUser_PostR(dataObject){
     
-    window.alert("Executing Post Request");
+    window.alert("Executing Post Request for " + dataObject.name);
     
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:8888/",
+        data: JSON.stringify(dataObject),
+        datatype: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(result) { alert("Completed Post Request"); },
+        error: function(xmlhdrq, ajaxOptions, thrownError) {
+            alert(xmlhdrq.status);
+            alert(thrownError);
+        }
+    });
+} 
+
+function removeUser_PostR(dataObject){
+     //POST REQUEST - Server Side JS
     $.ajax({
         type: "POST",
         url: "http://127.0.0.1:8888/",
         data: JSON.stringify(dataobject),
         datatype: "json",
         contentType: 'application/json; charset=utf-8',
-        success: function(result) { alert(result); },
+        success: function(result) { alert("Removed " + dataObject.name + " From Database."); },
         error: function(xmlhdrq, ajaxOptions, thrownError) {
             alert(xmlhdrq.status);
             alert(thrownError);
