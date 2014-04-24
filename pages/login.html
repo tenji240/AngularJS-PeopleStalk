@@ -31,7 +31,7 @@
 
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input id="login-username" type="email" class="form-control" ng-model="user.email" placeholder="Enter Email Address">
+                        <input id="login-username" type="email" class="form-control" ng-model="user.email" ng-pattern="\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b"  placeholder="Enter Email Address">
                     </div>
 
                     <div style="margin-bottom: 25px" class="input-group">

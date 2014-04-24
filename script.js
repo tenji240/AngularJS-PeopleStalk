@@ -118,22 +118,25 @@ peopleApp.controller('signupController', function ($scope) {
 });
 
 //create the controller and inject Angular's $scope
-peopleApp.controller('manageController', function ($scope) {
+peopleApp.controller('manageController', function ($scope, $http) {
     // create a message to display in our view
     $scope.message = 'Add or Delete Users Here';
     
     $scope.addUser = function(){
-        array.push({
+        var dataObject = {
             id : array.length,
             name : $scope.user.name,
             email : $scope.user.email,
             phone : $scope.user.phone,
             url : $scope.user.url,
             password : $scope.user.password
-        });
-        
+        };
+
+        array.push(dataObject);
         window.alert('Successfully Added ' + $scope.user.name +  ' to PeopleStalk.');
+        addUser_PostR(dataObject);
     }
+    
     
     $scope.removeUser = function(){
         
@@ -166,11 +169,32 @@ peopleApp.controller('manageController', function ($scope) {
         
         if(!found)
             window.alert('Can\'t Find ' + $scope.user.name +  ' in PeopleStalk.');
+        
     }
     
     $scope.master = array;
     
 });
+
+//External non Associated function used to perform AJAX Call to NodeJS Server.
+//Hopefully it works....
+function addUser_PostR(dataObject){
+    
+    window.alert("Executing Post Request");
+    
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:8888/",
+        data: JSON.stringify(dataobject),
+        datatype: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(result) { alert(result); },
+        error: function(xmlhdrq, ajaxOptions, thrownError) {
+            alert(xmlhdrq.status);
+            alert(thrownError);
+        }
+    });
+}
 
 peopleApp.controller('friendsController', function($scope) {
     $scope.message = 'Anyone and Everyone you know is displayed here!';

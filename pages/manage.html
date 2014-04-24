@@ -34,11 +34,11 @@
               </div>
               
               <div class="form-group">
-                  <input type="email" class="form-control" id="email_add" placeholder="Enter Email" ng-model="user.email">
+                  <input type="email" class="form-control" id="email_add" placeholder="Enter Email" ng-pattern="\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b" ng-model="user.email">
               </div>
           
               <div class="form-group">
-                  <input type="text" class="form-control" id="phone_add" placeholder="Enter Phone Number" ng-model="user.phone">
+                  <input type="text" class="form-control" id="phone_add" placeholder="Enter Phone Number" ng-pattern="\d{3}-(\d{3})-\d{4}" ng-model="user.phone">
               </div>
               
               <div class="form-group">
