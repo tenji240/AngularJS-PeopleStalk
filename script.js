@@ -53,19 +53,20 @@ peopleApp.config(function($routeProvider) {
         });
 });
 
-//Vanilla Screens
+//Controllers
 // create the controller and inject Angular's $scope
-
 peopleApp.controller('mainController', function ($scope) {
     // create a message to display in our view
     $scope.message = 'Welcome to PeopleStalk.com!';
 
 });
 
+//Welcome Screen
 peopleApp.controller('welcomeController', function ($scope) {
     $scope.message = 'Welcome to PeopleStalk.com!'
 });
 
+//Login Controller
 peopleApp.controller('loginController', [ '$scope', '$location', function ($scope, $location) {
     $scope.master = array;
     
@@ -89,6 +90,7 @@ peopleApp.controller('loginController', [ '$scope', '$location', function ($scop
     }
 }]);
 
+//Signup Controller
 peopleApp.controller('signupController', function ($scope) {
     $scope.master = array;
     
@@ -153,11 +155,24 @@ peopleApp.controller('manageController', function ($scope, $window) {
             $window.alert('Can\'t Find ' + $scope.user.name +  ' in PeopleStalk.');
         else{
             dataObject = {name:$scope.user.name, option:"remove"};
+            removeUser_PostR(dataObject);
         }
     }
     
     $scope.updateUser = function(){
         var found = false;
+        
+        var dataObject = {
+            id : array.length,
+            name : $scope.user.name,
+            email : $scope.user.email,
+            phone : $scope.user.phone,
+            url : $scope.user.url,
+            password : $scope.user.password,
+            option: "insert"
+        };
+        
+        
         for(var data = 0; data < array.length; data++){
             if(array[data].name == $scope.user.name){
                 array[data].email = $scope.user.email;
@@ -170,47 +185,20 @@ peopleApp.controller('manageController', function ($scope, $window) {
         }
         if(!found)
             $window.alert('Can\'t Find ' + $scope.user.name +  ' in PeopleStalk.');
+        else{
+            
+            //Remove the Old
+            var temp = {name:$scope.user.name, option:"remove"};
+            removeUser_PostR(temp);
+            
+            //Add in the new!
+            addUser_PostR(dataObject);
+        }
     }
     
     $scope.master = array;
     
 });
-
-//External non Associated function used to perform AJAX Call to NodeJS Server.
-//Hopefully it works....
-function addUser_PostR(dataObject){
-    
-    window.alert("Executing Post Request for " + dataObject.name);
-    
-    $.ajax({
-        type: "POST",
-        url: "http://127.0.0.1:8888/",
-        data: JSON.stringify(dataObject),
-        datatype: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(result) { alert("Completed Post Request"); },
-        error: function(xmlhdrq, ajaxOptions, thrownError) {
-            alert(xmlhdrq.status);
-            alert(thrownError);
-        }
-    });
-} 
-
-function removeUser_PostR(dataObject){
-     //POST REQUEST - Server Side JS
-    $.ajax({
-        type: "POST",
-        url: "http://127.0.0.1:8888/",
-        data: JSON.stringify(dataobject),
-        datatype: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(result) { alert("Removed " + dataObject.name + " From Database."); },
-        error: function(xmlhdrq, ajaxOptions, thrownError) {
-            alert(xmlhdrq.status);
-            alert(thrownError);
-        }
-    });
-}
 
 peopleApp.controller('friendsController', function($scope) {
     $scope.message = 'Anyone and Everyone you know is displayed here!';
@@ -239,3 +227,39 @@ peopleApp.controller('profileController', function($scope){
     }
     
 });
+
+//External non Associated functions used to perform AJAX Call to NodeJS Server.
+//Hopefully it works....
+function addUser_PostR(dataObject){
+    
+    window.alert("Executing Post Request for " + dataObject.name);
+    
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:8888/",
+        data: JSON.stringify(dataObject),
+        datatype: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(result) { alert("Completed Post Request"); },
+        error: function(xmlhdrq, ajaxOptions, thrownError) {
+            alert(xmlhdrq.status);
+            alert(thrownError);
+        }
+    });
+} 
+
+function removeUser_PostR(dataObject){
+     //POST REQUEST - Server Side JS
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:8888/",
+        data: JSON.stringify(dataObject),
+        datatype: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(result) { alert("Removed " + dataObject.name + " From Database."); },
+        error: function(xmlhdrq, ajaxOptions, thrownError) {
+            alert(xmlhdrq.status);
+            alert(thrownError);
+        }
+    });
+}
