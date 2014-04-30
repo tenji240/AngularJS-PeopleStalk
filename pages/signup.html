@@ -35,21 +35,35 @@
                     <div class="form-group">
                         <label for="email" class="col-md-3 control-label">Email</label>
                         <div class="col-md-9">
-                            <input type="email" class="form-control" name="email" ng-model="user.email" ng-pattern="\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b" placeholder="Doe@gmail.com">
+                            <input type="email" class="form-control" name="email" ng-model="user.email" placeholder="Doe@gmail.com" required="">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="phone" class="col-md-3 control-label">Phone Number</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="phone" ng-model="user.phone" ng-pattern="\d{3}-(\d{3})-\d{4}" placeholder="202-113-2222">
+                            <input type="tel" class="form-control" name="phone" ng-model="user.phone" placeholder="202-113-2222">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="password" class="col-md-3 control-label">Password</label>
                         <div class="col-md-9">
-                            <input type="password" class="form-control" name="passwd" ng-model="user.password" placeholder="Password">
+                            <input type="password" class="form-control" name="password" ng-model="user.password" placeholder="Password" required="">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="securityQuestion" class="col-md-3 control-label">Security Question</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="securityQuestion" ng-model="user.securityQuestion" placeholder="Enter Security Question">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="securityAnswer" class="col-md-3 control-label">Security Answer</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="securityAnswer" ng-model="user.securityAnswer" placeholder="Enter Answer to Security Question">
                         </div>
                     </div>
 
@@ -65,4 +79,5 @@
             </div>
         </div>
     </div>
+    
 </div>
