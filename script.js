@@ -153,7 +153,7 @@ peopleApp.controller('signupController', function ($scope, $window) {
 
                 window.alert('Welcome, ' + $scope.user.name +  ' to PeopleStalk.');
                 window.location = 'http://127.0.0.1:8888/#/home';
-                window.location.reload();
+                //window.location.reload();
             }
         }
     }
@@ -225,7 +225,7 @@ peopleApp.controller('manageController', function ($scope, $window) {
                 array[data].phone = $scope.user.phone;
                 array[data].url = $scope.user.url;
                 array[data].password = $scope.user.password;
-                array[data].securityQuestion: $scope.user.securityQuestion;
+                array[data].securityQuestion = $scope.user.securityQuestion;
                 array[data].securityAnswer = $scope.user.securityAnswer;
                 found = true;
                 break;
@@ -289,18 +289,16 @@ peopleApp.controller('profileController', function($scope){
 //Hopefully it works....
 function addUser_PostR(dataObject){
     
-    window.alert("Executing Post Request for " + dataObject.name);
-    
     $.ajax({
         type: "POST",
         url: "http://127.0.0.1:8888/",
         data: JSON.stringify(dataObject),
         datatype: "json",
         contentType: 'application/json; charset=utf-8',
-        success: function(result) { window.alert(result); },
+        success: function(result) { alert(result); },
         error: function(xmlhdrq, ajaxOptions, thrownError) {
-            window.alert(xmlhdrq.status);
-            window.alert(thrownError);
+            alert(xmlhdrq.status);
+            alert(thrownError);
         }
     });
 } 
