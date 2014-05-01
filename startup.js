@@ -169,8 +169,6 @@ function showDB() {
   return db.people.find();
 }
 
-
-
 //Parse JSON data
 function grabData(err, result) {
     msg = "{\"data\":";
