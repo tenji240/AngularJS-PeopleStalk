@@ -21,6 +21,11 @@ var db = mongo.db("mongodb://localhost:27017/data", {native_parser:true});
 db.bind('people');
 var cache = [];
 
+
+
+
+
+
 //Server Declaration - Server will hand all POST Requests
 var server = http.createServer(function (request, response) {
     console.log('request starting...');
