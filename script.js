@@ -153,7 +153,6 @@ peopleApp.controller('signupController', function ($scope, $window) {
 
                 window.alert('Welcome, ' + $scope.user.name +  ' to PeopleStalk.');
                 window.location = 'http://127.0.0.1:8888/#/home';
-                //window.location.reload();
             }
         }
     }
@@ -295,7 +294,7 @@ function addUser_PostR(dataObject){
         data: JSON.stringify(dataObject),
         datatype: "json",
         contentType: 'application/json; charset=utf-8',
-        success: function(result) { alert(result); },
+        success: function(result) { console.log(result); },
         error: function(xmlhdrq, ajaxOptions, thrownError) {
             alert(xmlhdrq.status);
             alert(thrownError);
@@ -311,10 +310,10 @@ function removeUser_PostR(dataObject){
         data: JSON.stringify(dataObject),
         datatype: "json",
         contentType: 'application/json; charset=utf-8',
-        success: function(result) { window.alert(result); },
+        success: function(result) { console.log(result); },
         error: function(xmlhdrq, ajaxOptions, thrownError) {
-            window.alert(xmlhdrq.status);
-            window.alert(thrownError);
+            console.log(xmlhdrq.status);
+            console.log(thrownError);
         }
     });
 }
