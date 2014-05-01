@@ -251,7 +251,7 @@ peopleApp.controller('friendsController', function($scope) {
     $scope.message = 'Anyone and Everyone you know is displayed here!';
     
     $scope.master = array;
-        
+    
     $scope.getTable = function(){
         var tabl = getTable_PostR();
         window.alert(tabl);
@@ -334,15 +334,11 @@ function getTable_PostR(){
         contentType: 'application/json; charset=utf-8',
         success: function(result) { 
             console.log(result);
-            elem = result; 
-            console.log(elem);
+            return result;
         },
         error: function(xmlhdrq, ajaxOptions, thrownError) {
             alert(xmlhdrq.status);
             alert(thrownError);
         }
     });
-    
-    console.log(elem);
-    return elem;
 }
