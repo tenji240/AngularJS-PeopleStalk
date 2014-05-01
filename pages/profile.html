@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#home">PeopleStalk</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#manage"><i class="fa fa-search"></i> Mange</a></li>
+        <li><a href="#friends"><i class="fa fa-group"></i> Friends</a></li>
+        <li><a href="#profile"><i class="fa fa-male"></i> Profile</a></li>
+      </ul>
+
+    </div>  
+</nav>
+
+<div class="containter col-md-12 text-center">
+    <div class="container jumbotron col-md-12" style="margin-left:auto; margin-right:auto">
+    
+        <h2>{{ message }}</h2>
+
+        <hr />
+
+        <div class="col-md-12">
+            <form role="form" class="form-inline text-center">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="search_user" placeholder="Enter Name Here" ng-model="inputText">
+                </div>
+
+                <div class="form-group">
+                    <button id="get_user" type="submit" class="btn btn-primary" ng-click="showUser()">Submit</button>
+                </div>
+            </form>
+        </div>
+        
+        <br />
+
+        <div class="col-md-10 col-md-offset-1">
+            <div style="float:left" class="text-left">
+                <p>Name: {{user.name}}</p>
+                <p>Email: {{user.email}}</p>
+                <p>Phone: {{user.phone}}</p>
+            </div>
+            <div style="float:right">
+                <img src={{user.url}} height="300" width="275"/>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="text-center">
+    <p>Copyright <a href="#">People Stalk.com</a></p>
+</footer>

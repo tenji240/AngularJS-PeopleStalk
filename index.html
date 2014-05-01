@@ -1,62 +1,29 @@
-<html lang="en"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+<!DOCTYPE html>
 
-    <title>PeopleStalk</title>
+<!-- define angular app -->
+<html ng-app="peopleApp">
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <head>
+        <!-- SCROLLS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+        <link rel="stylesheet" href="css/signin.css">
+        
+        <!-- SPELLS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="script.js"></script>
 
-    <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet">
-
-    <style type="text/css"></style>
-    <style id="holderjs-style" type="text/css"></style>
+        <!--META-->
+        <meta charset="utf-8">
     </head>
 
-  <body>
+    <!-- define angular controller -->
+    <body ng-controller="mainController">
 
-    <div class="site-wrapper">
-      <div class="site-wrapper-inner">
-        <div class="cover-container">
+        <div id="main" ng-view></div>
 
-            <div class="masthead clear">
-                <div class="inner">
-                    <h3 class="masthead-brand">PeopleStalk</h3>
-                    <ul class="nav masthead-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <!-- <li><a href="admin.html">View Users</a></li> -->
-                    </ul>
-                </div>
-            </div>
+    </body>
 
-            <div class="inner cover full-page">
-                <h1 class="cover-heading">Welcome to PeopleStalk</h1>
-                <p class="lead">PeopleStalk is an online management tool allowing you to manange all the people in your life.</p>
-                <p class="lead">
-                  <a href="signin.html" class="btn btn-lg btn-default">Sign in</a>
-                </p>
-            </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/docs.min.js"></script>
-    <script><script type="text/javascript">
-		$(document).ready(function() {
-			alert('Page now Online');
-		});
-	</script>
-  
-
-</body></html>
+</html>

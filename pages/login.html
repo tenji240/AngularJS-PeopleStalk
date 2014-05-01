@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">PeopleStalk</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#login"><i class="fa fa-sign-in"></i> Sign In</a></li>
+        <li><a href="#signup"><i class="fa fa-user"></i> Sign Up</a></li>
+        <li><a href="#home"><i class="fa fa-cog"></i> Admin</a></li>
+      </ul>
+
+    </div>  
+</nav>
+
+<div class="container">
+    
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" ng-model="user.email">
+        <input type="password" class="form-control" placeholder="Password" required="" ng-model="user.password">
+        <button class="btn btn-lg btn-primary btn-block" ng-click="login()">Sign in</button>
+    </form>
+    
+</div>

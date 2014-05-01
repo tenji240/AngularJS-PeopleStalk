@@ -1,70 +1,138 @@
-<html lang="en"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+<!-- 
+NOTE: PLEASE SEE README.md FIRST before executing!!
+-->
 
-    <title>Starter Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-          body {
-          padding-top: 50px;
-        }
-        .starter-template {
-          padding: 40px 15px;
-          text-align: center;
-        }
-    </style>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="PeopleStalk">
+        <meta name="author" content="Group 2">
+        <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+        <link href="css/admin.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <script src="client.js"></script>
+        <title>Main Page</title>
     </head>
 
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-
-          <a class="navbar-brand" href="#">People Stalk - Admin</a>
-
+    <body>
+        <!-- 
+        This section of the code handles the operation of the Nav-bar. It contains the search 
+        box and the submit button needed to execute a search. 
+        -->
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="admin.html">People Stalk</a>
+                
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search" id="search_user">
+                    </div>
+                </form>
+                
+            </div>
+          </div>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/admin.html">Home</a></li>
-            <li><a href="#">View all Members</a></li>
-            <li><a href="/add.html">Add A User</a></li>
-            <li><a href="/remove.html">Remove A User</a></li>
-            <li><a href="/login.html">Logout</a></li>
+          
+        <div class="container-fluid">
+
+            <!-- 
+             This section of the code contains the div for the profile of a a user. 
+             It displayes the users pic, name and other information to the left side 
+             of the sreen.
+            -->
             
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
-      
-    <div class="container-fluid">
-        <div class="panel panel-default">
-            <div class="panel-heading">Panel heading without title</div>
-                <div class="panel-body">
-                    <table class="table table-hover" id="database">
-                    </table>
+            <div class="col-md-3" style="float:left">
+                <div class="container col-md-12">
+                    <div class="jumbotron" id="user">
+                        
+                    </div>
                 </div>
+            </div>
+            
+            <div class="col-md-9">
+                
+            <!-- 
+             This section of the code contains the div for the profile of a a user. 
+             It displayes the users pic, name and other information to the left side 
+             of the sreen.
+            --> 
+                
+            <div class="container">
+                <div class="jumbotron col-md-10">
+                    
+                    <h2>Add a User</h2>
+                    
+                    <form role="form" class="form-inline">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="name_add" placeholder="Enter Name Here">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email_add" placeholder="Enter Email">
+                        </div>
+                    </form>
+                    
+                    <form role="form" class="form-inline">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="phone_add" placeholder="Enter Phone Number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="url" class="form-control" id="url_add" placeholder="Insert Photo URL">
+                        </div>
+                    </form>
+                    
+                    <button id="submit_user" type="submit" class="btn btn-primary" onclick="addUser()">Submit</button>
+                    <button id="delete_user" type="submit" class="btn btn-warning" onclick="deleteUser()">Delete</button>
+                    <button type="submit" class="btn btn-default" onclick="loadTable(false)">Show User</button>
+                </div>
+            </div>
+
+
+             <!-- 
+             This section of the code contains the div for the profile of a a user. 
+             It displayes the users pic, name and other information to the left side 
+             of the sreen.
+             --> 
+            <div class="container">
+                <div class="jumbotron col-md-10">
+                
+                    <div class="row">
+                        <h4 style="float:left;">User Table</h4>
+                        <button class="btn btn-primary" onclick="loadTable(true);" style="float:right;">Load Table</button>
+                    </div>
+                    
+                    <table class="table table-hover" id="user_table">
+                        <thead>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                        </thead>
+                        <tbody id="user_table_body">
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+                
+            </div>
+            
         </div>
-    </div>
-    
+        
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-</body></html>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
