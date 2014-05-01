@@ -1,61 +1,82 @@
-CMSC-448-Project-1
+CMSC-448-Project-2
 ==================
 
 Members:
-Andrew Lee-Young
-Tenji Tembo
-Randal McKissack
-Perry Ogwuche
-Phillip Krocheski
+-----------
+- Andrew Lee-Young
+- Tenji Tembo
+- Randal McKissack
+- Perry Ogwuche
+- Phillip Krocheski
 
-First Project for CMSC 448.
+**Second Iteration of CMSC 448 Project**
 
-This Project uses NodeJS for Client and Server Side
-requests and handling, uses MongoDB for Database Calls
-and Read/Writes, and a number of NodeJS 3rd Party Libaries, 
-such as MongoSkin. This also uses the Boostrap 3 Base API
-for HTML Scaffolding and CSS Styling Elements.
+<blockquote>
+This Project uses NodeJS for Client and Server Side requests and handling, uses MongoDB for Database Calls and Read/Writes, and a number of NodeJS 3rd Party Libaries, such as MongoSkin. This also uses the Boostrap 3 Base API for HTML Scaffolding and CSS Styling Elements. 
+</blockquote>
 
-=================================
-
-TO RUN:
+TO RUN - WINDOWS 7:
+-------------------
 
 BEFORE
-Make sure you have MongoDB and NodeJS installed. You will 
-also need mongoskin to run server side calls to MongoDB as
-well.
+<blockquote>
+    <p>Make sure you have MongoDB and NodeJS installed. You will also need Mongoskin to run server side calls to MongoDB as well. </p>
+    <p>The Database is 233 MB in size alone, so it will not be included in the submission. A blank data\db folder will be put in place. </p>
+</blockquote>
 
-The Database is 233 MB in size alone, so it will not be included in
-the submission. A blank data\db folder will be put in place. 
+1. Initiate MongoDB Server and set the path to the data folder
+<blockquote>
+C:>\mongodb\bin\mongod --dbpath User\Tenji\Documents\Github\CMSC-448-Project-1\data
+</blockquote>
 
-Step 1) Initiate MongoDB Server and set the path to the data folder
-EX (Terminal Win7): C:>\mongodb\bin\mongod --dbpath User\Tenji\Documents\Github\CMSC-448-Project-1\data
 
-Step 2) Initiate Mongo
-EX (Terminal Win7): C:>\mongodb\bin\mongo
+2. Initiate Mongo - EX (Terminal Win7): C:>\mongodb\bin\mongo
 
-Step3) Set the database to data. 
-In the Mongo Shell
-"> use data"
-"> db.people.remove()" -- clears the database
-"> db.people.find()" -- returns all documents in the database
+3. Set the database to data. 
+<blockquote>
+In the Mongo Shell <br />
+"> use data" <br />
+"> db.people.remove()" -- clears the database <br />
+"> db.people.find()" -- returns all documents in the database 
+</blockquote>
 
-Step 4) Run startup.js via Node
-In a new Terminal.
-CD to project directory
-"C:>\..\CMSC-448-Project-1 node startup.js"
+4. Run startup.js via Node
+ <blockquote>
+     In a new Terminal. <br />
+     CD to project directory <br />
+     "C:>\..\CMSC-448-Project-1 node startup.js" <br />
+     A prompt will appear 'Server running at http://127.0.0.1:8888/'. Open a browser and go to http://127.0.0.1:8888/
+ </blockquote>
 
-A prompt will appear 'Server running at http://127.0.0.1:8888/'
-Open a browser and go to http://127.0.0.1:8888/
+5. Navigation - You will see index.html, which communicates with the node server on client side.
 
-Step 5) Navigation
-You will see admin.html, which communicates with the node server
-on client side.
+TO RUN - MAC OSX/LINUX
+----------------------
 
-TO ADD: Fill in all input boxes and hit the 'Submit'
-TO REMOVE: Fill in the name field and hit 'Delete'
-TO SHOW: Fill in the name in the Search Box and hit 'Show User'
-TO SHOW ALL: Hit Load Table
+1. $ mongod --dbpath data
+2. $ mongo
+    <blockquote>
+        > use data <br />
+        > db.people.remove(); -- clears the database <br />
+        > db.people.find(); -- returns all documents in the database
+    </blockquote>
+3. $ node startup.js
+4. Navigate to http://127.0.0.1:8888/
 
-NodeJS parses all POST REQUESTS and returns the data back to client.js
-who renders the JSON into actual displayed text.
+
+New Additions/Extras
+=====================================
+- Signup and Login/Logout Functionality Added
+- Add/Remove/Update User Functionality Added
+- Dedicated Profile Page with extended Functionality
+- Regex Check for Phone Numbers and Emails
+- Password Check Parameters to update users when passwords neeed to be changed
+- Security Question Functionality
+
+Technologies
+==============
+- NodeJS parses all POST REQUESTS and returns the data back to client.js who renders the JSON into actual displayed text.
+- AngularJS handles all Client Side Data Binding and attribute matching
+- MongoSkin Provides JS Server Side Scripting for POST Request to MongoDB
+- MongoDB provides Server Side Database to save and return documents passed to database
+- Bootstrap 3 used for front end design and HTML Scaffolding. 
