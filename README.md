@@ -18,7 +18,7 @@ This Project uses NodeJS for Client and Server Side requests and handling, uses 
 TO RUN - WINDOWS 7:
 -------------------
 
-BEFORE
+Before
 <blockquote>
     <p>Make sure you have MongoDB and NodeJS installed. You will also need Mongoskin to run server side calls to MongoDB as well. </p>
     <p>The Database is 233 MB in size alone, so it will not be included in the submission. A blank data\db folder will be put in place. </p>
@@ -65,7 +65,7 @@ TO RUN - MAC OSX/LINUX
 
 
 New Additions/Extras
-=====================================
+---------------------
 - Signup and Login/Logout Functionality Added
 - Add/Remove/Update User Functionality Added
 - Dedicated Profile Page with extended Functionality
@@ -74,9 +74,14 @@ New Additions/Extras
 - Security Question Functionality
 
 Technologies
-==============
+--------------
 - NodeJS parses all POST REQUESTS and returns the data back to client.js who renders the JSON into actual displayed text.
 - AngularJS handles all Client Side Data Binding and attribute matching
 - MongoSkin Provides JS Server Side Scripting for POST Request to MongoDB
 - MongoDB provides Server Side Database to save and return documents passed to database
 - Bootstrap 3 used for front end design and HTML Scaffolding. 
+
+
+Test Accounts
+--------------
+- alpha@gmail.com - paper56 - Sky Blue [Admin Account]
